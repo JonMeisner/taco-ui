@@ -5,14 +5,14 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 
-// const store = createStore(combineReducers, applyMiddleware(thunk));
-// store.subscribe(() => {
-//   console.log('Update inventory: ', store.getState().flattenedInventory);
-// })
+const store = createStore(combineReducers, applyMiddleware(thunk));
+store.subscribe(() => {
+  console.log('Update inventory: ', store.getState().flattenedInventory);
+})
 
 ReactDOM.render(
-    // <Provider store={store}>
+    <Provider store={store}>
         <App />,
-    // </Provider>,
+    </Provider>,
     document.getElementById("root")
 );
