@@ -94,9 +94,7 @@ export default function App() {
     const [showHideToggler, setShowHideToggler] = React.useState(false);
     const [showRegisterToggler, setShowRegisterToggler] = React.useState(false);
     const [showCookToggler, setShowCookToggler] = React.useState(false);
-    //const [userID, setCustomerName] = React.useState('');
-    //let start = [{Customer: 'Saxy', Spicy: 1, Green: 2, Rona: 3, Cost: 650},{Customer: 'Sandro', Spicy: 5, Green: 0, Rona: 3, Cost: 1400}]
-    const [orders, setOrders] = React.useState([]); // React.useState([]);
+    const [orders, setOrders] = React.useState([]);
 
     window.addEventListener('message', (event) => { // Listens for start signal
         if (event.data.openTaco === true) {
@@ -144,57 +142,5 @@ export default function App() {
     };
 
     return (
-        <div className={showHideToggler ? classes.show : classes.hide}>
-            {/* <div style={{ marginLeft:'530px', marginTop: '365px'}} class='Loader'></div> */}
-            <div> {/*Top Section*/}
-                <AppBar position='relative' color='default'>
-                    <Toolbar style={{backgroundColor: '#EED414'}}>
-                    <img src='img/theTacoFarmer.png' alt='taco' height='50' width='200'/>
-                    {/* <FastfoodIcon style={{fontSize: '35px'}}/> */}
-                    {/* <Typography style={{ marginLeft: '17px'}} variant='h6' noWrap>{customerName}</Typography> */}
-                    <IconButton style={{marginLeft: 'auto'}} onClick={() => closeApplication()}>
-                        <ExitToApp />
-                    </IconButton>
-                    </Toolbar>
-                </AppBar>
-            </div>
-            <div className = { showRegisterToggler ? classes.otherShow : classes.hide }>
-                <Menu/>
-            </div>
-            <div className = { showCookToggler ? classes.otherShow : classes.hide }>
-            <MaterialTable 
-                style={tableStyle}
-                options={tableOptions}
-                icons = {tableIcons}
-                columns = {[
-                    {title: 'Customer', field: 'Customer', editable: 'never'},
-                    {title: 'Spicy Tacos', field: 'Spicy', editable: 'never'},
-                    {title: 'Green Tacos', field: 'Green', editable: 'never'},
-                    {title: 'Coronas', field: 'Rona', editable: 'never'},
-                    {title: 'Cost ($)', field: 'Cost', editable: 'never'},
-                ]}
-                data = {orders}
-                title = 'Current Orders'
-                actions={[
-                    {
-                        icon: PlayCircleFilledWhiteIcon,
-                        tooltip: 'Cook Order', 
-                        onClick: (event, rowData) => cookOrder(rowData)
-                    }
-                ]}
-                components={{
-                    Action: props => (
-                        <Button 
-                        onClick = {(event) => props.action.onClick(event, props.data)}
-                        color='primary'
-                        variant="contained"
-                        style={{textTransform: 'none'}}
-                        size='small'
-                        ><strong>Cook</strong></Button>
-                    ),
-                }}
-            />
-            </div>
-        </div>
-    )
+        
 }

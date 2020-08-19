@@ -76,7 +76,7 @@ const OrderList = props => {
             {
                 icon: 'cook',
                 tooltip: 'Cook Order',
-                onClick: (event,rowData) => 
+                // onClick: (event,rowData) => 
             }
         ]}
         />
