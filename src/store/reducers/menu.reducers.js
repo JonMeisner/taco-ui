@@ -1,4 +1,4 @@
-import * as types from '../actions/taco.actions';
+import * as types from '../actions/menu.actions';
 
 const initialState = {
     showMenuToggler: false,

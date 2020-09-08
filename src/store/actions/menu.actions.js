@@ -58,4 +58,3 @@ export const setTotalCost = (value) => ({
 export const clearMenu = () => ({
     type:CLEAR_ALL,
 })
-
