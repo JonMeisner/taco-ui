@@ -1,42 +1,21 @@
-export const SET_ORDERS = "SET_ORDERS";
-export const GET_ORDERS = "GET_ORDERS";
-export const SHOW_HIDE_TOGGLER = "SHOW_HIDE_TOGGLER";
-export const DONT_SHOW_HIDE_TOGGLER = "DONT_SHOW_HIDE_TOGGLER";
-export const SHOW_REGISTER_TOGGLER = "SHOW_REGISTER_TOGGLER";
-export const DONT_SHOW_REGISTER_TOGGLER = "DONT_SHOW_REGISTER_TOGGLER";
-export const SHOW_COOK_TOGGLER = "SHOW_COOK_TOGGLER";
-export const DONT_SHOW_COOK_TOGGLER = "DONT_SHOW_COOK_TOGGLER";
+export const SHOW_COOK_MENU = 'SHOW_COOK_MENU';
+export const HIDE_COOK_MENU = 'HIDE_COOK_MENU';
+export const SET_ORDER_LIST = 'SET_ORDER_LIST';
+export const CLEAR_ORDER_DATA = 'CLEAR_ORDER_DATA';
 
-export const setOrders = (data) => ({
-    type:SET_ORDERS,
-    payload:data
+export const ShowCookMenu = () => ({
+    type:SHOW_COOK_MENU,
 })
 
-export const getOrders = () => ({
-    type:GET_ORDERS,
+export const HideCookMenu = () => ({
+    type:HIDE_COOK_MENU,
 })
 
-export const showHideToggler = () => ({
-    type: SHOW_HIDE_TOGGLER
+export const SetOrderList = (value) => ({
+    type:SET_ORDER_LIST,
+    payload: value,
 })
 
-export const dontShowHideToggler = () => ({
-    type: DONT_SHOW_HIDE_TOGGLER
+export const ClearOrderData = () => ({
+    type:CLEAR_ORDER_DATA,
 })
-
-export const showRegisterToggler = () => ({
-    type: SHOW_REGISTER_TOGGLER
-})
-
-export const dontShowRegisterToggler = () => ({
-    type: DONT_SHOW_REGISTER_TOGGLER
-})
-
-export const showCookToggler = () => ({
-    type: SHOW_COOK_TOGGLER
-})
-
-export const dontShowCookToggler = () => ({
-    type: DONT_SHOW_COOK_TOGGLER
-})
-
