@@ -50,7 +50,7 @@ const Menu = (props) => {
                     numSpicy={props.numSpicy}
                     alt={'spicy'}
                     img={'img/spicy_taco.png'}
-                    title={'A Spicy Ass Taco'}
+                    title={'A Spicy Taco'}
                 />
                 <MenuItem
                     handleMinus={props.handleMinus}
@@ -68,18 +68,17 @@ const Menu = (props) => {
                     handleMinus={props.handleMinus}
                     handlePlus={props.handlePlus}
                     itemName={'Green Taco'}
-                    itemDescription={"The Taco Farmer SPECIAL! Don't tell your parole officer about this one"}
+                    itemDescription={"The Taco Farmer SPECIAL!"}
                     itemPrice={'$200'}
                     numSpicy={props.numGreen}
                     alt={'green'}
-                    img={'img/green_taco.png'}
                     title={'A Green Taco'}
                 />
                 <MenuItem
                     handleMinus={props.handleMinus}
                     handlePlus={props.handlePlus}
                     itemName={'Corona'}
-                    itemDescription={"An ice cold beer with your tacos. NO not the virus."}
+                    itemDescription={"An ice cold beer with your tacos."}
                     itemPrice={'$150'}
                     numSpicy={props.numCorona}
                     alt={'corona'}
