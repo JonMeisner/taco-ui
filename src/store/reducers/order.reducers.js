@@ -1,22 +1,22 @@
 import * as types from '../actions/order.actions';
 
 const initialState = {
-    showCookToggler: false,
+    // showCookToggler: false,
     orderList: [],
 };
 
 const cookReducer = (state = initialState, action) => {
     switch (action.type) {
-        case types.SHOW_COOK_MENU:
-            return {
-                ...state,
-                showCookToggler: true,
-            };
-        case types.HIDE_COOK_MENU:
-            return {
-                ...state,
-                showCookToggler: false,
-            }
+        // case types.SHOW_COOK_MENU:
+        //     return {
+        //         ...state,
+        //         showCookToggler: true,
+        //     };
+        // case types.HIDE_COOK_MENU:
+        //     return {
+        //         ...state,
+        //         showCookToggler: false,
+        //     }
         case types.SET_ORDER_LIST:
             return {
                 ...state,
@@ -26,7 +26,7 @@ const cookReducer = (state = initialState, action) => {
             return {
                 ...state,
                 orderList: [],
-                showCookToggler: false,
+                // showCookToggler: false,
             }
         default:
             return state;

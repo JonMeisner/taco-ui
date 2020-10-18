@@ -1,90 +1,59 @@
-import React from "react";
-import { makeStyles } from '@material-ui/core';
+import React from 'react';
+import { makeStyles, Button, Typography, Paper } from '@material-ui/core';
 
+const useStyles = makeStyles((theme) => ({
+    main: {
 
-
-const tableIcons = {
-    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
-    Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
-    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
-    DetailPanel: forwardRef((props, ref) => (
-        <ChevronRight {...props} ref={ref} />
-    )),
-    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
-    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
-    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
-    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
-    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
-    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-    PreviousPage: forwardRef((props, ref) => (
-        <ChevronLeft {...props} ref={ref} />
-    )),
-    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
-    SortArrow: forwardRef((props, ref) => (
-        <ArrowDownward {...props} ref={ref} />
-    )),
-    ThirdStateCheck: forwardRef((props, ref) => (
-        <Remove {...props} ref={ref} />
-    )),
-    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
-};
-
-const tableOptions = {
-    pageSize: 8,
-    pageSizeOptions: [],
-    // selection: true,
-    rowStyle: {
-        backgroundColor: "#EEE",
     },
-};
-
-const tableStyle = {
-    width: "inherit",
-    height: "inherit",
-    pallete: {
-        primary: {
-            main: "#FFFFFF", // Yellow
-        },
-        secondary: {
-            main: "#FFFFFF", //Green
-        },
+    paper: {
+        margin:'5px',
+        display: 'flex',
+        justifyContent:'space-between',
     },
-};
+    paperBottom: {
+        margin:'5px',
+        display: 'flex',
+        justifyContent:'space-between',
+    },
+    title: {
+        
+    },
+    labels: {
+        margin:'8px',
+    },
+}));
+
 
 const OrderViews = (props) => {
+    const classes = useStyles();
     return (
-        <MaterialTable
-            style={tableStyle}
-            options={tableOptions}
-            icons={tableIcons}
-            columns={props.columns}
-            data={props.data}
-            title={props.title}
-            actions={[
-                {
-                    icon: PlayCircleFilledWhiteIcon,
-                    onClick: (event, rowData) => props.cookOrder(rowData),
-                },
-            ]}
-            components={{
-                Action: (props) => (
-                    <Button
-                        onClick={(event) =>
-                            props.action.onClick(event, props.data)
-                        }
-                        color="primary"
-                        variant="contained"
-                        style={{ textTransform: "none" }}
-                        size="small"
-                    >
-                        <strong>{props.buttonPressText}</strong>
-                    </Button>
-                ),
-            }}
-        />
-    );
-};
+        <div>
+            <div style={{margin:'10px',justifyContent:"space-between",display:"flex"}}>
+            </div>
+            <div className={classes.main}>
+                {props.data.length === 0 ? 
+                <Paper className={classes.paper}>
+                    <Typography className={classes.labels} variant="h6">No Open Orders</Typography>
+                </Paper> : <div></div>}
+
+                {props.data.map((Label,index) => (
+                <Paper className={classes.paper} key={index} elevation={3}>
+                    <Typography className={classes.labels} variant='h6' >{props.data[index].Customer}</Typography>
+                    <Typography className={classes.labels} variant='h6' >Spicy: {props.data[index].Spicy}</Typography>
+                    <Typography className={classes.labels} variant='h6' >Green: {props.data[index].Green}</Typography>
+                    <Typography className={classes.labels} variant='h6' >Corona: {props.data[index].Rona}</Typography>
+                    <Typography className={classes.labels} variant='h6' >Cost: ${props.data[index].Cost}</Typography>
+                    <Button variant="outlined" className={classes.labels} onClick={() => props.cookOrder(props.data[index])}>Cook</Button>
+                </Paper>
+                ))}
+            </div>
+            {/* <Paper className={classes.paperBottom}>
+                <Typography className={classes.labels}>
+                    Work In Progress
+                </Typography>
+            </Paper> */}
+        </div>
+    )
+}
 
 export default OrderViews;

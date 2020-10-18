@@ -1,4 +1,4 @@
-import * as types from '../actions/menu.actions';
+import * as types from '../actions/taco.actions';
 
 const initialState = {
     showMenuToggler: false,
@@ -12,46 +12,50 @@ const initialState = {
 
 const tacoReducer = (state = initialState, action) => {
     switch (action.type) {
-        case types.SHOW_MENU:
-            return {
-                ...state,
-                showMenuToggler: true,
-            };
+        // case types.SHOW_MENU:
+        //     return {
+        //         ...state,
+        //         showMenuToggler: true,
+        //     };
         case types.HIDE_MENU:
             return {
                 ...state,
                 showMenuToggler: false,
             };
-        case types.SET_CUSTOMER_NAME:
-            return {
-                ...state,
-                customerName: action.payload,
-            };
+        // case types.SET_CUSTOMER_NAME:
+        //     return {
+        //         ...state,
+        //         customerName: action.payload,
+        //     };
         case types.SET_NUM_SPICY:
             return {
                 ...state,
-                numSpicy: action.payload,
-            }
+                numSpicy: action.payload.one,
+                totalCost: action.payload.two,
+            };
         case types.SET_NUM_CARNE:
             return {
                 ...state,
-                numCarne: action.payload,
+                numCarne: action.payload.one,
+                totalCost: action.payload.two,
             }
         case types.SET_NUM_GREEN:
             return {
                 ...state,
-                numGreen: action.payload,
+                numGreen: action.payload.one,
+                totalCost: action.payload.two,
             }
         case types.SET_NUM_CORONA:
             return {
                 ...state,
-                numCorona: action.payload,
+                numCorona: action.payload.one,
+                totalCost: action.payload.two,
             }
-        case types.SET_TOTAL_COST:
-            return {
-                ...state,
-                totalCost: action.payload,
-            }
+        // case types.SET_TOTAL_COST:
+        //     return {
+        //         ...state,
+        //         totalCost: action.payload,
+        //     }
         case types.SET_MENU_DATA:
             return {
                 ...state,

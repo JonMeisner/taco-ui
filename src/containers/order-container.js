@@ -1,39 +1,49 @@
-import React, { useState } from "react";
+import React, {useState, useEffect } from 'react';
+import * as apis from '../apis/apis';
 
-const OrderContainer = () => {
+// import order
+import { useDispatch, connect, useSelector } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import * as cookActions from '../store/actions/order.actions';
+import * as cookSelectors from '../store/selectors/order.selectors';
+import OrderViews from '../components/order-views';
+
+const OrderContainer = (getMenuData) => {
+    //const dispatch = useDispatch();
+    const data = useSelector(state => state.getOrderData)
+    //console.log(data.orderList);
     const meals = [
         { title: "Customer", field: "Customer", editable: "never" },
         { title: "Spicy Tacos", field: "Spicy", editable: "never" },
+        { title: "Carne Asada Tacos", field: "Carne", editable: "never" },
         { title: "Green Tacos", field: "Green", editable: "never" },
         { title: "Coronas", field: "Rona", editable: "never" },
         { title: "Cost ($)", field: "Cost", editable: "never" },
     ];
 
+
     const title = "Current Orders";
     const buttonPressText = "Cook";
-    const toolTipText = "Cook Order";
-    const cookOrder = () => {
-        //console.log([orderData]);
-        // setShowHideToggler(false);
-        // setShowCookToggler(false);
-        // setOrders([]);
-        apis.cookTacos();
+    const cookOrder = (orderFinal) => {
+        apis.cookTacos([orderFinal]);
     };
 
     return (
         <div>
             <OrderViews
                 title={title}
-                buttonPressText={buttonPressText}
-                data={orderList}
+                buttonePressText={buttonPressText}
+                data={data.orderList}
                 columns={meals}
                 cookOrder={cookOrder}
             />
         </div>
-    );
-};
+    )
+}
 
-const mapStateToProps = createStructuredSelector({
-    orderList: selectors.getOrders,
-});
-export default connect(mapStateToProps)(OrderContainer);
+const mapStatetoProps = createStructuredSelector({
+    getMenuData: cookSelectors.getOrderData
+})
+
+
+export default connect(mapStatetoProps)(OrderContainer);
