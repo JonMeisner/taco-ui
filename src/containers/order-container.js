@@ -8,7 +8,7 @@ import * as cookActions from '../store/actions/order.actions';
 import * as cookSelectors from '../store/selectors/order.selectors';
 import OrderViews from '../components/order-views';
 
-const OrderContainer = (getMenuData) => {
+const OrderContainer = (props) => {
     //const dispatch = useDispatch();
     const data = useSelector(state => state.getOrderData)
     //console.log(data.orderList);
@@ -28,6 +28,11 @@ const OrderContainer = (getMenuData) => {
         apis.cookTacos([orderFinal]);
     };
 
+    const deleteOrder = (deletedOrder) => {
+        apis.deleteOrder([deletedOrder])
+        props.closeApplication()
+    };
+
     return (
         <div>
             <OrderViews
@@ -36,6 +41,7 @@ const OrderContainer = (getMenuData) => {
                 data={data.orderList}
                 columns={meals}
                 cookOrder={cookOrder}
+                deleteOrder={deleteOrder}
             />
         </div>
     )

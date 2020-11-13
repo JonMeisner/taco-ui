@@ -9,7 +9,7 @@ module.exports = merge(common, {
     entry: "./src/index.js",
     output: {
         path: path.resolve(
-            "C:/Users/SaxyN/OneDrive/Desktop/ACTUAL UI/new-taco-ui/dist"
+            "C:/FXServer/server-data/resources/pma-tacos/dist"
         ),
         filename: "index.js",
     },
@@ -23,7 +23,8 @@ module.exports = merge(common, {
                 {
                     from: "src/assets",
                     to: path.resolve(
-                        "C:/Users/SaxyN/OneDrive/Desktop/ACTUAL UI/new-taco-ui/src/assets"
+                        // "C:/Users/SaxyN/OneDrive/Desktop/ACTUAL UI/taco-ui/src/assets"
+                        "C:/FXServer/server-data/resources/pma-tacos/dist/img"
                     ),
                 },
             ],

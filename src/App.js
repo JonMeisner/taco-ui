@@ -96,7 +96,7 @@ const App = (toggleState,cookStuff) => {
             dispatch(cookActions.SetOrderList(event.data.orderList))
             // dispatch(actions.showMenuToggler())
             // dispatch(actions.setCustomerName(event.data.customer))
-            //dispatch(cookActions.SetOrderList([{Customer: 'Derek Fhreebs', Spicy: 2, Carne: 0, Green: 1, Rona: 2, Cost: 1500},{Customer: 'Eduardo', Spicy: 11, Carne: 0, Green: 2, Rona: 6, Cost: 20000}]))
+            //dispatch(cookActions.SetOrderList([{Customer: 'Derek Fhreebs', Spicy: 2, Carne: 5, Green: 1, Corona: 2, Cost: 1500},{Customer: 'Eduardo', Spicy: 11, Carne: 0, Green: 2, Corona: 6, Cost: 20000}]))
             setJob(event.data.job);
         }
         if (event.data.openMenu === false) {
@@ -126,7 +126,7 @@ const App = (toggleState,cookStuff) => {
                     </Route>
 
                     <Route exact path="/orders">
-                        <OrderContainer />
+                        <OrderContainer closeApplication={closeApplication}/>
                     </Route>
  
                 </Switch>
@@ -139,3 +139,18 @@ const App = (toggleState,cookStuff) => {
 
 
 export default connect(mapStateToProps)(App);
+
+
+
+// Make components export default w/o the name
+
+// export default (props) {
+// 	return (
+		
+// 	)
+// }
+
+// Simplify Components
+// 	-> Make components/functions less specific so that they can be reused elsewhere
+
+// Move some of the mumbo jumbo into the store to simplify the looks

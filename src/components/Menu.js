@@ -6,7 +6,7 @@ const useStyles = makeStyles({
     main: {
         display: 'flex',
         textAlign: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
         marginTop: '20px',
     },
     longRoot: {
@@ -15,7 +15,6 @@ const useStyles = makeStyles({
         marginLeft: '5px',
         marginRight: '5px',
         marginTop: '20px',
-
     },
     orderButton: {
         marginLeft: 'auto',
@@ -35,8 +34,7 @@ const useStyles = makeStyles({
 
 const Menu = (props) => {
     const classes = useStyles();
-    const order = [{Customer: props.customerName, Spicy: props.numSpicy, Green: props.numGreen, Corona: props.numCorona, Cost: props.totalCost}]
-
+    const order = [{customer: props.customerName, spicy: props.numSpicy, carne: props.numCarne, green: props.numGreen, corona: props.numCorona, cost: props.totalCost}]
 
     return (
         <div>
@@ -57,21 +55,22 @@ const Menu = (props) => {
                     handlePlus={props.handlePlus}
                     itemName={'Carne Asada Taco'}
                     itemDescription={"A Truly Beefy Taco that is said to be served containing bits of kevlar"}
-                    itemPrice={'COMING SOON!'}
-                    numSpicy={props.numGreen}
+                    itemPrice={'$350'}
+                    numSpicy={props.numCarne}
                     alt={'carne_asada_taco'}
                     img={'img/carne_asada_taco.png'}
                     title={'A Thick and Hearty Taco'}
-                    style={{marginBottom: '20px', color:'Tomato'}}
+                    // style={{marginBottom: '20px', color:'Tomato'}}
                 />
                 <MenuItem
                     handleMinus={props.handleMinus}
                     handlePlus={props.handlePlus}
                     itemName={'Green Taco'}
-                    itemDescription={"The Taco Farmer SPECIAL!"}
-                    itemPrice={'$200'}
+                    itemDescription={"The Taco Farmer SPECIAL! Don't tell your parole officer about this one!"}
+                    itemPrice={'$100'}
                     numSpicy={props.numGreen}
                     alt={'green'}
+                    img={'img/green_taco.png'}
                     title={'A Green Taco'}
                 />
                 <MenuItem
@@ -79,7 +78,7 @@ const Menu = (props) => {
                     handlePlus={props.handlePlus}
                     itemName={'Corona'}
                     itemDescription={"An ice cold beer with your tacos."}
-                    itemPrice={'$150'}
+                    itemPrice={'$100'}
                     numSpicy={props.numCorona}
                     alt={'corona'}
                     img={'img/beer.png'}

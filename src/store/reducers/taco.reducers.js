@@ -67,6 +67,7 @@ const tacoReducer = (state = initialState, action) => {
                 ...state,
                 showMenuToggler: false,
                 numSpicy: 0,
+                numCarne: 0,
                 numGreen: 0,
                 numCorona: 0,
                 customerName: '',

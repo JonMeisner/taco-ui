@@ -21,6 +21,11 @@ const useStyles = makeStyles((theme) => ({
     labels: {
         margin:'8px',
     },
+    customerName: {
+        margin: '8px',
+        minWidth: '300px',
+        maxWidth: '300px',
+    }
 }));
 
 
@@ -28,30 +33,25 @@ const OrderViews = (props) => {
     const classes = useStyles();
     return (
         <div>
-            <div style={{margin:'10px',justifyContent:"space-between",display:"flex"}}>
-            </div>
             <div className={classes.main}>
                 {props.data.length === 0 ? 
                 <Paper className={classes.paper}>
                     <Typography className={classes.labels} variant="h6">No Open Orders</Typography>
-                </Paper> : <div></div>}
+                </Paper> : null}
 
                 {props.data.map((Label,index) => (
                 <Paper className={classes.paper} key={index} elevation={3}>
-                    <Typography className={classes.labels} variant='h6' >{props.data[index].Customer}</Typography>
-                    <Typography className={classes.labels} variant='h6' >Spicy: {props.data[index].Spicy}</Typography>
-                    <Typography className={classes.labels} variant='h6' >Green: {props.data[index].Green}</Typography>
-                    <Typography className={classes.labels} variant='h6' >Corona: {props.data[index].Rona}</Typography>
-                    <Typography className={classes.labels} variant='h6' >Cost: ${props.data[index].Cost}</Typography>
+                    <Typography className={classes.customerName} variant='h6' >{props.data[index].customer}</Typography>
+                    <Typography className={classes.labels} variant='h6' >Spicy: {props.data[index].spicy}</Typography>
+                    <Typography className={classes.labels} variant='h6' >Carne Asada: {props.data[index].carne}</Typography>
+                    <Typography className={classes.labels} variant='h6' >Green: {props.data[index].green}</Typography>
+                    <Typography className={classes.labels} variant='h6' >Corona: {props.data[index].corona}</Typography>
+                    <Typography className={classes.labels} variant='h6' >Cost: ${props.data[index].cost}</Typography>
                     <Button variant="outlined" className={classes.labels} onClick={() => props.cookOrder(props.data[index])}>Cook</Button>
+                    <Button variant="outlined" className={classes.labels} color="secondary" onClick={() => props.deleteOrder(props.data[index])}>Delete</Button>
                 </Paper>
                 ))}
             </div>
-            {/* <Paper className={classes.paperBottom}>
-                <Typography className={classes.labels}>
-                    Work In Progress
-                </Typography>
-            </Paper> */}
         </div>
     )
 }
