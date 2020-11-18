@@ -55,7 +55,7 @@ const Menu = (props) => {
                     handlePlus={props.handlePlus}
                     itemName={'Carne Asada Taco'}
                     itemDescription={"A Truly Beefy Taco that is said to be served containing bits of kevlar"}
-                    itemPrice={'$350'}
+                    itemPrice={'$500'}
                     numSpicy={props.numCarne}
                     alt={'carne_asada_taco'}
                     img={'img/carne_asada_taco.png'}

@@ -96,7 +96,7 @@ const App = (toggleState,cookStuff) => {
             dispatch(cookActions.SetOrderList(event.data.orderList))
             // dispatch(actions.showMenuToggler())
             // dispatch(actions.setCustomerName(event.data.customer))
-            //dispatch(cookActions.SetOrderList([{Customer: 'Derek Fhreebs', Spicy: 2, Carne: 5, Green: 1, Corona: 2, Cost: 1500},{Customer: 'Eduardo', Spicy: 11, Carne: 0, Green: 2, Corona: 6, Cost: 20000}]))
+            //dispatch(cookActions.SetOrderList([{customer: 'Derek Fhreebs', spicy: 2, carne: 5, green: 1, corona: 2, cost: 1500},{customer: 'Eduardo', spicy: 11, carne: 0, green: 2, corona: 6, cost: 20000}]))
             setJob(event.data.job);
         }
         if (event.data.openMenu === false) {
