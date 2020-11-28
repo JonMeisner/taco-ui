@@ -12,20 +12,17 @@ const OrderContainer = (props) => {
     //const dispatch = useDispatch();
     const data = useSelector(state => state.getOrderData)
     //console.log(data.orderList);
-    const meals = [
-        { title: "Customer", field: "Customer", editable: "never" },
-        { title: "Spicy Tacos", field: "Spicy", editable: "never" },
-        { title: "Carne Asada Tacos", field: "Carne", editable: "never" },
-        { title: "Green Tacos", field: "Green", editable: "never" },
-        { title: "Coronas", field: "Rona", editable: "never" },
-        { title: "Cost ($)", field: "Cost", editable: "never" },
-    ];
-
 
     const title = "Current Orders";
     const buttonPressText = "Cook";
     const cookOrder = (orderFinal) => {
-        apis.cookTacos([orderFinal]);
+        if (orderFinal.type === 0) {
+            apis.cookTacos([orderFinal]);
+        } else {
+            console.log([orderFinal])
+            apis.cookDelivery([orderFinal])
+        }
+        
     };
 
     const deleteOrder = (deletedOrder) => {
@@ -39,7 +36,6 @@ const OrderContainer = (props) => {
                 title={title}
                 buttonePressText={buttonPressText}
                 data={data.orderList}
-                columns={meals}
                 cookOrder={cookOrder}
                 deleteOrder={deleteOrder}
             />

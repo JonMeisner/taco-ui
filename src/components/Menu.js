@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     },
     orderButton: {
         marginLeft: 'auto',
-        marginRight: '5px',
+        marginRight: 15,
         height: '30px',
         marginTop: '47px',
     },
@@ -34,7 +34,11 @@ const useStyles = makeStyles({
 
 const Menu = (props) => {
     const classes = useStyles();
-    const order = [{customer: props.customerName, spicy: props.numSpicy, carne: props.numCarne, green: props.numGreen, corona: props.numCorona, cost: props.totalCost}]
+    const order = [{type: 0, customer: props.customerName, spicy: props.numSpicy, carne: props.numCarne, green: props.numGreen, corona: props.numCorona, cost: props.totalCost}]
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
 
     return (
         <div>
@@ -88,8 +92,8 @@ const Menu = (props) => {
             <div>
                 <Card className={classes.longRoot}>
                     <CardContent>
-                        <Typography variant='h5' className={classes.typography_title}>Total: {props.customerName}</Typography>
-                        <Typography variant='h4' className={classes.typography_cost}>${props.totalCost}</Typography>
+                        <Typography variant='h5' className={classes.typography_title}> Customer: {props.customerName}</Typography>
+                        <Typography variant='h4' className={classes.typography_cost}> Total: ${numberWithCommas(props.totalCost)}</Typography>
                     </CardContent>
                     <Button className={classes.orderButton} variant='outlined' onClick={() => props.orderTacos(order)}>ORDER</Button>
                 </Card>

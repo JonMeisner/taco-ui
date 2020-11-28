@@ -3,6 +3,7 @@ import axios from 'axios';
 const closeTacosUrl = 'http://pma-tacos/closeTacos'
 const orderTacosUrl = 'http://pma-tacos/orderTacos'
 const cookTacosUrl  = 'http://pma-tacos/cookTacos'
+const cookDeliveryUrl = 'http://pma-tacos/cookDelivery'
 const deleteOrderUrl = 'http://pma-tacos/deleteOrder'
 
 export const closeTacos = () => {
@@ -15,6 +16,10 @@ export const orderTacos = (orderPass) => {
 
 export const cookTacos = (cookOrder) => {
     return axios.post(cookTacosUrl, {cookOrder})
+}
+
+export const cookDelivery = (deliveryOrder) => {
+    return axios.post(cookDeliveryUrl, {deliveryOrder})
 }
 
 export const deleteOrder = (deletedOrder) => {

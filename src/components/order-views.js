@@ -5,10 +5,16 @@ const useStyles = makeStyles((theme) => ({
     main: {
 
     },
-    paper: {
+    paperPlayer: {
         margin:'5px',
         display: 'flex',
         justifyContent:'space-between',
+    },
+    paperDelivery: {
+        margin:'5px',
+        display: 'flex',
+        justifyContent:'space-between',
+        backgroundColor: '#6BC277',
     },
     paperBottom: {
         margin:'5px',
@@ -47,22 +53,26 @@ const OrderViews = (props) => {
         }        
     }
 
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
     return (
         <div>
             <div className={classes.main}>
                 {props.data.length === 0 ? 
-                <Paper className={classes.paper}>
+                <Paper className={classes.paperPlayer}>
                     <Typography className={classes.labels} variant="h6">No Open Orders</Typography>
                 </Paper> : null}
 
                 {props.data.map((Label,index) => (
-                <Paper className={classes.paper} key={index} elevation={3}>
+                <Paper className={props.data[index].type === 0 ? classes.paperPlayer : classes.paperDelivery} key={index} elevation={3}>
                     <Typography className={classes.customerName} variant='h6' >{props.data[index].customer}</Typography>
                     <Typography className={classes.labels} variant='h6' >Spicy: {props.data[index].spicy}</Typography>
                     <Typography className={classes.labels} variant='h6' >Carne Asada: {props.data[index].carne}</Typography>
                     <Typography className={classes.labels} variant='h6' >Green: {props.data[index].green}</Typography>
                     <Typography className={classes.labels} variant='h6' >Corona: {props.data[index].corona}</Typography>
-                    <Typography className={classes.labels} variant='h6' >Cost: ${props.data[index].cost}</Typography>
+                    <Typography className={classes.labels} variant='h6' >Cost: ${numberWithCommas(props.data[index].cost)}</Typography>
                     <Button variant="outlined" className={classes.labels} onClick={() => props.cookOrder(props.data[index])}>Cook</Button>
                     <Button variant="outlined" className={classes.labels} color="secondary" onClick={() => handleClickOpen(props.data[index])}>Delete</Button>
                 </Paper>
