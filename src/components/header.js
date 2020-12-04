@@ -13,7 +13,7 @@ const Header = (props) => {
     const classes = useStyles();
 
     return (
-        <AppBar position="relative" color="default">
+        <AppBar position="sticky" color="default">
             <Toolbar style={{ backgroundColor: "#EED414" }}>
                 <img
                     src="img/theTacoFarmer.png"

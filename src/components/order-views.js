@@ -3,7 +3,7 @@ import { makeStyles, Button, Typography, Paper, Dialog, DialogTitle, DialogConte
 
 const useStyles = makeStyles((theme) => ({
     main: {
-
+        // overflow: 'auto',
     },
     paperPlayer: {
         margin:'5px',

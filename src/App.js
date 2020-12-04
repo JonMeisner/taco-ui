@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
         margin: 'auto',
         borderStyle: 'solid',
         backgroundColor: '#b6b6b6',
+        overflow: 'auto',
     },
     root: {
         display: 'auto',
