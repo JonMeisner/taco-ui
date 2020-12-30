@@ -3,13 +3,10 @@
 import React from "react";
 import {
   Card,
-  CardActionArea,
   CardContent,
-  CardMedia,
   Typography,
   makeStyles,
   Button,
-  ButtonGroup,
 } from "@material-ui/core";
 import MenuItem from "./menu-item";
 
@@ -44,7 +41,6 @@ const useStyles = makeStyles({
 });
 
 const Menu = ({
-  menuItems,
   orderList,
   handleMinus,
   handlePlus,
@@ -64,7 +60,7 @@ const Menu = ({
     <div>
       {store.name}
       <div className={classes.main}>
-        {menuItems.map((menuItem) => {
+        {store.menuItems.map((menuItem) => {
           return (
             <MenuItem
               handleMinus={handleMinus}

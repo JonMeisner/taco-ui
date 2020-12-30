@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import * as apis from './apis/apis';
-import { HashRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Header from './components/header';
-import { makeStyles, Button, List, Tab, Tabs, Paper } from '@material-ui/core';
+import { makeStyles} from '@material-ui/core';
 
 //store
 import { useDispatch, connect, useSelector } from 'react-redux';
@@ -15,8 +14,8 @@ import * as cookSelectors from './store/selectors/order.selectors';
 
 import MenuContainer from './containers/menu-container';
 import OrderContainer from './containers/order-container';
-import { tacoMenu, tacoShop } from './menus/TacoMenu';
-import { pizzaMenu, pizzaShop } from './menus/pizzaMenu';
+import { tacoShop } from './menus/TacoMenu';
+import { pizzaShop } from './menus/pizzaMenu';
 
 const useStyles = makeStyles((theme) => ({
     show: {
@@ -122,10 +121,10 @@ const App = (toggleState,cookStuff) => {
             <Router>
                 <Switch>
                     <Route exact path="/tacos">
-                        <MenuContainer submitOrder={orderTacos} menuItems={tacoMenu} store={tacoShop} closeApplication={closeApplication}/>
+                        <MenuContainer submitOrder={orderTacos} store={tacoShop} closeApplication={closeApplication}/>
                     </Route>
                     <Route exact path="/pizza">
-                        <MenuContainer submitOrder={orderTacos} menuItems={pizzaMenu} store={pizzaShop} closeApplication={closeApplication} />
+                        <MenuContainer submitOrder={orderTacos} store={pizzaShop} closeApplication={closeApplication} />
                     </Route>
                     <Route exact path="/orders">
                         <OrderContainer closeApplication={closeApplication}/>

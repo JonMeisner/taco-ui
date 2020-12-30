@@ -1,4 +1,10 @@
-const pizzaMenu = [
+export const pizzaShop = {
+  name: "Tony's Pizza",
+  logo: "img/theTacoFarmer.png",
+  logoAlt: 'taco',
+  primaryColor: 'red',
+  secondaryColor: 'yellow',
+  menuItems: [
   {
     name: "Corona",
     key: 'corona',
@@ -41,14 +47,6 @@ const pizzaMenu = [
     img: "img/carne_asada_taco.png",
     title: "A Thick and Hearty Taco",
   },
-];
-
-const pizzaShop = {
-  name: "Tony's Pizza",
-  logo: "img/theTacoFarmer.png",
-  logoAlt: 'taco',
-  primaryColor: 'red',
-  secondaryColor: 'yellow'
+]
 }
 
-export {pizzaMenu, pizzaShop}

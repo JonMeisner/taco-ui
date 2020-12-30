@@ -1,9 +1,7 @@
 /** @format */
 
 //main react
-import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core";
-import * as apis from "../apis/apis";
+import React from "react";
 
 //components
 import Menu from "../components/menu";
@@ -15,7 +13,7 @@ import * as actions from "../store/actions/taco.actions";
 import * as selectors from "../store/selectors/taco.selectors";
 import Header from "../components/header";
 
-const MenuContainer = ({ submitOrder, menuItems, store, closeApplication }) => {
+const MenuContainer = ({ submitOrder, store, closeApplication }) => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.getMenuData);
 
@@ -32,7 +30,6 @@ const MenuContainer = ({ submitOrder, menuItems, store, closeApplication }) => {
       <Header closeApplication={closeApplication} store={store} />
       <Menu
         store={store}
-        menuItems={menuItems}
         orderList={data.orderList}
         totalCost={data.totalCost}
         customerName={data.customerName}
