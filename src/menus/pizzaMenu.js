@@ -1,4 +1,4 @@
-const tacoMenu = [
+const pizzaMenu = [
   {
     name: "Corona",
     key: 'corona',
@@ -43,12 +43,12 @@ const tacoMenu = [
   },
 ];
 
-const tacoShop = {
-  name: "Taco Shop",
+const pizzaShop = {
+  name: "Tony's Pizza",
   logo: "img/theTacoFarmer.png",
   logoAlt: 'taco',
-  primaryColor: 'yellow',
-  secondaryColor: 'blue'
+  primaryColor: 'red',
+  secondaryColor: 'yellow'
 }
 
-export {tacoShop, tacoMenu}
+export {pizzaMenu, pizzaShop}

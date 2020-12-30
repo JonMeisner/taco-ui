@@ -9,31 +9,26 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Header = (props) => {
+const Header = ({store, closeApplication}) => {
     const classes = useStyles();
 
     return (
         <AppBar position="sticky" color="default">
-            <Toolbar style={{ backgroundColor: "#EED414" }}>
+            <Toolbar style={{ backgroundColor: store.primaryColor }}>
                 <img
-                    src="img/theTacoFarmer.png"
-                    alt="taco"
+                    src={store.logo}
+                    alt={store.logoAlt}
                     height="50"
                     width="200"
                 />
-                {props.job === "taco" ?                 
+                {store.name} 
                 <ButtonGroup className={classes.buttonGroup}>
                     <Button component={Link} to="/" variant="outlined">Menu</Button>
                     <Button component={Link} to="/orders" variant="outlined">Orders</Button>
-                </ButtonGroup> :
-                <ButtonGroup className={classes.buttonGroup}>
-                    <Button component={Link} to="/" variant="outlined">Menu</Button>
-                    <Button component={Link} to="/orders" variant="outlined" disabled>Orders</Button>
-                </ButtonGroup>}
-
+                </ButtonGroup>
                 <IconButton
                     style={{ marginLeft: "10px" }}
-                    onClick={() => props.closeApplication()}
+                    onClick={closeApplication}
                 >
                     <ExitToApp />
                 </IconButton>

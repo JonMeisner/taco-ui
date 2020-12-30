@@ -15,7 +15,8 @@ import * as cookSelectors from './store/selectors/order.selectors';
 
 import MenuContainer from './containers/menu-container';
 import OrderContainer from './containers/order-container';
-import { tacoMenu } from './menus/TacoMenu';
+import { tacoMenu, tacoShop } from './menus/TacoMenu';
+import { pizzaMenu, pizzaShop } from './menus/pizzaMenu';
 
 const useStyles = makeStyles((theme) => ({
     show: {
@@ -121,10 +122,12 @@ const App = (toggleState,cookStuff) => {
     return (
         <div className={showMenu.showMenuToggler ? classes.show : classes.hide}>
             <Router>
-                <Header closeApplication={closeApplication} job={job}/>
                 <Switch>
-                    <Route exact path="/">
-                        <MenuContainer orderTacos={orderTacos}/>
+                    <Route exact path="/tacos">
+                        <MenuContainer submitOrder={orderTacos} menuItems={tacoMenu} store={tacoShop} closeApplication={closeApplication}/>
+                    </Route>
+                    <Route exact path="/pizza">
+                        <MenuContainer submitOrder={orderTacos} menuItems={pizzaMenu} store={pizzaShop} closeApplication={closeApplication} />
                     </Route>
                     <Route exact path="/orders">
                         <OrderContainer closeApplication={closeApplication}/>

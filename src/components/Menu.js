@@ -51,6 +51,7 @@ const Menu = ({
   orderTacos,
   totalCost,
   customerName,
+  store
 }) => {
   const classes = useStyles();
   const order = [];
@@ -61,6 +62,7 @@ const Menu = ({
 
   return (
     <div>
+      {store.name}
       <div className={classes.main}>
         {menuItems.map((menuItem) => {
           return (
