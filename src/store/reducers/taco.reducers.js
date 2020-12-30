@@ -7,7 +7,6 @@ const initialState = {
   customerName: "",
   totalCost: 0,
   orderList: {},
-  menuItems: [],
 };
 
 const tacoReducer = (state = initialState, action) => {
@@ -45,7 +44,6 @@ const tacoReducer = (state = initialState, action) => {
         ...state,
         showMenuToggler: action.payload.toggle,
         customerName: action.payload.name,
-        menuItems: action.payload.menuItems,
       };
     case types.CLEAR_ALL:
       return {

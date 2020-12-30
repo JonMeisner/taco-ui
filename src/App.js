@@ -99,12 +99,11 @@ const App = (toggleState,cookStuff) => {
 
     const onMessage = (event) => {
         if (event.data.openMenu === true && showMenu.showMenuToggler == false && showMenu.customerName === '') {
-            dispatch(actions.setMenuData(event.data.openMenu, event.data.customerName, tacoMenu))
+            dispatch(actions.setMenuData(event.data.openMenu, event.data.customerName))
             dispatch(cookActions.SetOrderList(event.data.orderList))
             // dispatch(actions.showMenuToggler())
             // dispatch(actions.setCustomerName(event.data.customer))
             // dispatch(cookActions.SetOrderList([{type: 0, customer: 'Derek Fhreebs', spicy: 2, carne: 5, green: 1, corona: 2, cost: 1500},{type: 1, customer: 'Eduardo', spicy: 11, carne: 0, green: 2, corona: 6, cost: 20000}]))
-            setJob(event.data.job);
         }
         if (event.data.openMenu === false) {
             dispatch(actions.hideMenuToggler())
@@ -112,7 +111,6 @@ const App = (toggleState,cookStuff) => {
         // if (event.data.openCook === true) {
         //     dispatch(cookActions.ShowCookMenu())
         //     dispatch(cookActions.SetOrderList([{Customer: 'Sax', Spicy: 2, Carne: 0, Green: 1, Rona: 2, Cost: 1500}]))
-        //     setJob(event.data.job);
         // }
         // if (event.data.openCook === false) {
         //     dispatch(cookActions.HideCookMenu())
@@ -132,7 +130,6 @@ const App = (toggleState,cookStuff) => {
                     <Route exact path="/orders">
                         <OrderContainer closeApplication={closeApplication}/>
                     </Route>
-
                 </Switch>
             </Router>
         </div>

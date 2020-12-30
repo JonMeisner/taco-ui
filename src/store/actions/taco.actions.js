@@ -22,10 +22,10 @@ export const hideMenuToggler = () => ({
 //     payload: name,
 // })
 
-export const setMenuData = (toggle, name, menuItems) => ({
+export const setMenuData = (toggle, name) => ({
   // Show UI & assign customer name
   type: SET_MENU_DATA,
-  payload: { toggle, name, menuItems },
+  payload: { toggle, name },
 });
 
 export const addOrderItem = (item, order) => ({
