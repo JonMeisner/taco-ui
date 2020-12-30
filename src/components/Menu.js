@@ -48,7 +48,7 @@ const Menu = (props) => {
                     handlePlus={props.handlePlus}
                     itemName={'Spicy Taco'}
                     itemDescription={'A Spicy Taco that is said to make you really move it move it'}
-                    itemPrice={'$300'}
+                    itemPrice={'$600'}
                     numSpicy={props.numSpicy}
                     alt={'spicy'}
                     img={'img/spicy_taco.png'}
@@ -59,7 +59,7 @@ const Menu = (props) => {
                     handlePlus={props.handlePlus}
                     itemName={'Carne Asada Taco'}
                     itemDescription={"A Truly Beefy Taco that is said to be served containing bits of kevlar"}
-                    itemPrice={'$500'}
+                    itemPrice={'$1000'}
                     numSpicy={props.numCarne}
                     alt={'carne_asada_taco'}
                     img={'img/carne_asada_taco.png'}
@@ -71,10 +71,10 @@ const Menu = (props) => {
                     handlePlus={props.handlePlus}
                     itemName={'Green Taco'}
                     itemDescription={"The Taco Farmer SPECIAL! Don't tell your parole officer about this one!"}
-                    itemPrice={'$100'}
+                    itemPrice={'$200'}
                     numSpicy={props.numGreen}
                     alt={'green'}
-                    img={'img/green_taco.png'}
+                    img={'./src/assets/green_taco.png'}
                     title={'A Green Taco'}
                 />
                 <MenuItem
