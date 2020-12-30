@@ -37,7 +37,7 @@ const MenuItem = ({item, orderQuantity, handleMinus, handlePlus}) => {
                 <CardContent>
                     <Typography variant='h5' className={classes.typography_title} >{item.name}</Typography>
                     <Typography variant='body2' color='textSecondary'>{item.description}</Typography>
-                    <Typography variant='h6' className={classes.typography_body}>{item.price}</Typography>
+                    <Typography variant='h6' className={classes.typography_body}>${item.price}</Typography>
                 </CardContent>
             </CardActionArea>
             <ButtonGroup className={classes.buttonGroup}>

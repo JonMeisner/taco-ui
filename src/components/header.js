@@ -21,7 +21,6 @@ const Header = ({store, closeApplication}) => {
                     height="50"
                     width="200"
                 />
-                {store.name} 
                 <ButtonGroup className={classes.buttonGroup}>
                     <Button component={Link} to="/" variant="outlined">Menu</Button>
                     <Button component={Link} to="/orders" variant="outlined">Orders</Button>

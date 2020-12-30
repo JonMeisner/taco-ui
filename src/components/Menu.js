@@ -58,7 +58,6 @@ const Menu = ({
 
   return (
     <div>
-      {store.name}
       <div className={classes.main}>
         {store.menuItems.map((menuItem) => {
           return (

@@ -54,7 +54,6 @@ const App = (toggleState,cookStuff) => {
     const dispatch = useDispatch();
     const classes = useStyles();
     const showMenu = useSelector(state => state.getMenuData);
-    const [job, setJob] = React.useState('');
 
     const orderTacos = (orderPass) => {
         //console.log(orderPass)
