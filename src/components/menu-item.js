@@ -20,34 +20,31 @@ const useStyles = makeStyles({
     }
 })
 
-const MenuItem = (props) => {
+const MenuItem = ({item, orderQuantity, handleMinus, handlePlus}) => {
     const classes = useStyles();
 
     return (
-
-        <Card className={classes.root}>
+        <Card key={item.name} className={classes.root}>
             <CardActionArea disabled>
                 <CardMedia
                     component='img'
-                    alt={props.alt}
+                    alt={item.altString}
                     height='300px'
                     width='300px'
-                    image={props.img}
-                    title={props.title}
+                    image={item.img}
+                    title={item.title}
                 />
                 <CardContent>
-                    <Typography variant='h5' className={classes.typography_title} >{props.itemName}</Typography>
-                    <Typography variant='body2' color='textSecondary'>{props.itemDescription}</Typography>
-                    <Typography variant='h6' className={classes.typography_body}>{props.itemPrice}</Typography>
+                    <Typography variant='h5' className={classes.typography_title} >{item.name}</Typography>
+                    <Typography variant='body2' color='textSecondary'>{item.description}</Typography>
+                    <Typography variant='h6' className={classes.typography_body}>{item.price}</Typography>
                 </CardContent>
             </CardActionArea>
             <ButtonGroup className={classes.buttonGroup}>
-                <Button onClick={() => props.handleMinus(props.alt)}>-</Button>
-                <Button>{props.numSpicy}</Button>
-                <Button onClick={() => props.handlePlus(props.alt)}>+</Button>
+                <Button onClick={() => handleMinus(item)}>-</Button>
+                <Button>{orderQuantity}</Button>
+                <Button onClick={() => handlePlus(item)}>+</Button>
             </ButtonGroup>
-
-
         </Card>
     )
 }

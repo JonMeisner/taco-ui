@@ -16,50 +16,19 @@ import * as selectors from '../store/selectors/taco.selectors';
 const MenuContainer = (props) => {
     const dispatch = useDispatch();
     const data = useSelector(state => state.getMenuData);
+
     const handlePlus = (item) => {
-        if (item === 'spicy' && data.numSpicy < 5) {
-            dispatch(actions.setSpicy(data.numSpicy+1,data.totalCost+600))
-            //dispatch(actions.setTotalCost(data.totalCost+300))
-        };
-        if (item == 'carne_asada_taco' && data.numCarne < 5) {
-            dispatch(actions.setCarne(data.numCarne+1,data.totalCost+1000))
-            //dispatch(actions.setTotalCost(data.totalCost+150))
-        };
-        if (item == 'green' && data.numGreen < 5) {
-            dispatch(actions.setGreen(data.numGreen+1,data.totalCost+200))
-            //dispatch(actions.setTotalCost(data.totalCost+200))
-        };
-        if (item == 'corona' && data.numCorona < 5) {
-            dispatch(actions.setCorona(data.numCorona+1,data.totalCost+100))
-            //dispatch(actions.setTotalCost(data.totalCost+150))
-        };
+        dispatch(actions.addOrderItem(item, data.orderList))
     };
 
     const handleMinus = (item) => {
-        if (item === 'spicy' && data.numSpicy > 0) {
-            dispatch(actions.setSpicy(data.numSpicy-1,data.totalCost-600))
-            //dispatch(actions.setTotalCost(data.totalCost-300))
-        };
-        if (item == 'carne_asada_taco' && data.numCarne > 0) {
-            dispatch(actions.setCarne(data.numCarne-1,data.totalCost-1000))
-            //dispatch(actions.setTotalCost(data.totalCost+150))
-        };
-        if (item == 'green' && data.numGreen > 0) {
-            dispatch(actions.setGreen(data.numGreen-1,data.totalCost-200))
-            //dispatch(actions.setTotalCost(data.totalCost-200))
-        };
-        if (item == 'corona' && data.numCorona > 0) {
-            dispatch(actions.setCorona(data.numCorona-1,data.totalCost-100))
-            //dispatch(actions.setTotalCost(data.totalCost-150))
-        };
-    };
+        dispatch(actions.removeOrderItem(item, data.orderList))
+    }
 
     return (
         <Menu
-        numSpicy={data.numSpicy}
-        numGreen={data.numGreen}
-        numCarne={data.numCarne}
-        numCorona={data.numCorona}
+        menuItems={data.menuItems}
+        orderList={data.orderList}
         totalCost={data.totalCost}
         customerName={data.customerName}
         handlePlus={handlePlus}
