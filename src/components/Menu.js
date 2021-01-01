@@ -47,25 +47,24 @@ const Menu = ({
   orderTacos,
   totalCost,
   customerName,
-  store
+  shop,
 }) => {
   const classes = useStyles();
-  const order = [];
 
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
-
   return (
     <div>
       <div className={classes.main}>
-        {store.menuItems.map((menuItem) => {
+        {shop.menuItems.map((menuItem) => {
           return (
             <MenuItem
+              key={menuItem.key}
               handleMinus={handleMinus}
               handlePlus={handlePlus}
               item={menuItem}
-              orderQuantity={orderList[menuItem.key] || 0 }
+              orderQuantity={orderList[menuItem.key] || 0}
             />
           );
         })}
@@ -83,7 +82,7 @@ const Menu = ({
           <Button
             className={classes.orderButton}
             variant="outlined"
-            onClick={() => orderTacos(order)}
+            onClick={() => orderTacos([])}
           >
             ORDER
           </Button>

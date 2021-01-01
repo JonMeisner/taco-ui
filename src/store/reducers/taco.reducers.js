@@ -2,11 +2,38 @@
 
 import * as types from "../actions/taco.actions";
 
+// postMessage({
+//   openMenu: true,
+//   customerName: "Derek",
+//   job: "taco",
+//   orderList: [
+//     {
+//       customer: "Derek Fhreebs",
+//       spicy: 2,
+//       carne: 3,
+//       green: 0,
+//       corona: 0,
+//       cost: 1999,
+//       type: 0,
+//     },
+//     {
+//       customer: "Derek Fhreebs",
+//       spicy: 2,
+//       carne: 3,
+//       green: 0,
+//       corona: 0,
+//       cost: 1999,
+//       type: 0,
+//     },
+//   ],
+// });
+
 const initialState = {
   showMenuToggler: false,
   customerName: "",
   totalCost: 0,
   orderList: {},
+  shopData: {},
 };
 
 const tacoReducer = (state = initialState, action) => {
@@ -39,22 +66,21 @@ const tacoReducer = (state = initialState, action) => {
         },
         totalCost: state.totalCost + action.payload.costDiff,
       };
-    case types.SET_MENU_DATA:
+    case types.INITIALIZE_MENU:
       return {
         ...state,
         showMenuToggler: action.payload.toggle,
         customerName: action.payload.name,
       };
+    case types.SET_SHOP_DATA:
+      return { ...state, shopData: action.payload.shopData };
     case types.CLEAR_ALL:
       return {
         ...state,
-        showMenuToggler: false,
-        numSpicy: 0,
-        numCarne: 0,
-        numGreen: 0,
-        numCorona: 0,
         customerName: "",
         totalCost: 0,
+        orderList: {},
+        showMenuToggler: false,
       };
     default:
       return state;

@@ -43,7 +43,7 @@ const OrderContainer = (props) => {
 };
 
 const mapStatetoProps = createStructuredSelector({
-  getMenuData: cookSelectors.getOrderData,
+  getOrderData: cookSelectors.getOrderData,
 });
 
 export default connect(mapStatetoProps)(OrderContainer);

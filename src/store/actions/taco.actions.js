@@ -2,11 +2,10 @@
 
 // export const SHOW_MENU = 'SHOW_MENU';
 export const HIDE_MENU = "HIDE_MENU";
-// export const SET_CUSTOMER_NAME = 'SET_CUSTOMER_NAME';
-
 export const UPDATE_ORDER_ITEM = "UPDATE_ORDER_ITEM";
-export const SET_MENU_DATA = "SET_MENU_DATA";
+export const INITIALIZE_MENU = "INITIALIZE_MENU";
 export const CLEAR_ALL = "CLEAR_ALL";
+export const SET_SHOP_DATA = "SET_SHOP_DATA";
 
 // export const showMenuToggler = () => ({
 //     type:SHOW_MENU,
@@ -24,7 +23,7 @@ export const hideMenuToggler = () => ({
 
 export const setMenuData = (toggle, name) => ({
   // Show UI & assign customer name
-  type: SET_MENU_DATA,
+  type: INITIALIZE_MENU,
   payload: { toggle, name },
 });
 
@@ -32,7 +31,7 @@ export const addOrderItem = (item, order) => ({
   type: UPDATE_ORDER_ITEM,
   payload: {
     key: item.key,
-    quantityDiff:  1,
+    quantityDiff: 1,
     costDiff: item.price,
   },
 });
@@ -41,7 +40,7 @@ export const removeOrderItem = (item, order) => ({
   type: UPDATE_ORDER_ITEM,
   payload: {
     key: item.key,
-    quantityDiff:  -1,
+    quantityDiff: -1,
     costDiff: -item.price,
   },
 });
@@ -49,4 +48,9 @@ export const removeOrderItem = (item, order) => ({
 export const clearMenu = () => ({
   // Clear all Menu/Order Data (On Shut Down)
   type: CLEAR_ALL,
+});
+
+export const setShopData = (shopData) => ({
+  type: SET_SHOP_DATA,
+  payload: { shopData },
 });

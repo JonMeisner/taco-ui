@@ -1,15 +1,17 @@
-import {createSelector} from 'reselect';
+/** @format */
+
+import { createSelector } from "reselect";
 
 //const getToggle = (state) => state.showMenuToggler;
 // const getToggle = (state) => state.getOrderData;
-const getName = (state) => state.getMenuData;
+const getState = (state) => state;
 
 // export const getMenuState = createSelector (
 //     [getToggle],
 //     (data) => data.showMenuToggler,
 // );
 
-export const getMenuData = createSelector (
-    [getName],
-    (data) => data.customerName,
-)
+export const getMenuData = createSelector(
+  [getState],
+  (data) => data.getMenuData
+);
