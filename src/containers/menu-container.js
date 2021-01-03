@@ -13,7 +13,6 @@ import * as actions from "../store/actions/menu.actions";
 import * as selectors from "../store/selectors/menu.selectors";
 import Header from "../components/header";
 import { useParams } from "react-router-dom";
-import { Typography } from "@material-ui/core";
 import { useShopLoader } from "../hooks/useShopLoader";
 
 const MenuContainer = ({ submitOrder, closeApplication }) => {
@@ -21,7 +20,7 @@ const MenuContainer = ({ submitOrder, closeApplication }) => {
 
   const dispatch = useDispatch();
 
-  const { isLoading } = useShopLoader(shopId);
+  useShopLoader(shopId);
   const { shopData, orderList } = useSelector((state) => state.getMenuData);
 
   const handlePlus = (item) => {
@@ -31,10 +30,6 @@ const MenuContainer = ({ submitOrder, closeApplication }) => {
   const handleMinus = (item) => {
     dispatch(actions.removeOrderItem(item, orderList));
   };
-
-  if (isLoading) {
-    return <Typography>Loading</Typography>;
-  }
 
   return (
     <>

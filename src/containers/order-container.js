@@ -16,6 +16,7 @@ const buttonPressText = "Cook";
 
 const OrderContainer = ({ closeApplication }) => {
   useOrderLoader();
+  const orderData = useSelector((state) => state.getOrderData);
 
   const cookOrder = (orderFinal) => {
     if (orderFinal.type === "shop") {

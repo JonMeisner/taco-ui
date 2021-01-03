@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 const mapStateToProps = createStructuredSelector({});
 
-const App = (props) => {
+const App = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const showMenu = useSelector((state) => state.getMenuData);
@@ -88,6 +88,7 @@ const App = (props) => {
     dispatch(actions.clearMenu());
   }, []);
 
+  // should we be just sending shop and menu data through the message event?
   const onMessage = (event) => {
     if (
       event.data.openMenu === true &&
