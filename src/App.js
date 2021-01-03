@@ -9,7 +9,7 @@ import { makeStyles } from "@material-ui/core";
 //store
 import { useDispatch, connect, useSelector } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import * as actions from "./store/actions/taco.actions";
+import * as actions from "./store/actions/menu.actions";
 import * as cookActions from "./store/actions/order.actions";
 
 import MenuContainer from "./containers/menu-container";

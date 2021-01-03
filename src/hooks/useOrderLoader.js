@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { mockOrderList } from "../shops/mockOrderList";
 import * as actions from "../store/actions/order.actions";
 
-const fetchOrderData = async (id) => {
+const fetchOrderData = async (shopId) => {
   // TODO: make API request for order data
   return new Promise((resolve, reject) => {
     resolve(mockOrderList);
@@ -14,12 +14,12 @@ const fetchOrderData = async (id) => {
 };
 
 export const useOrderLoader = () => {
-  const { id } = useParams();
+  const { shopId } = useParams();
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchOrders = () => {
-    fetchOrderData(id).then((data) => {
+    fetchOrderData(shopId).then((data) => {
       dispatch(actions.setOrderList(data));
       setIsLoading(false);
     });

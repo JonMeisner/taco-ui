@@ -9,18 +9,19 @@ import Menu from "../components/menu";
 //store
 import { useDispatch, connect, useSelector } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import * as actions from "../store/actions/taco.actions";
-import * as selectors from "../store/selectors/taco.selectors";
+import * as actions from "../store/actions/menu.actions";
+import * as selectors from "../store/selectors/menu.selectors";
 import Header from "../components/header";
 import { useParams } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 import { useShopLoader } from "../hooks/useShopLoader";
 
 const MenuContainer = ({ submitOrder, closeApplication }) => {
-  const { id } = useParams();
+  const { shopId } = useParams();
+  console.log("ID", shopId);
   const dispatch = useDispatch();
 
-  const { isLoading } = useShopLoader(id);
+  const { isLoading } = useShopLoader(shopId);
   const { shopData, orderList } = useSelector((state) => state.getMenuData);
 
   const handlePlus = (item) => {

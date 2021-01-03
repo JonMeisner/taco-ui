@@ -1,10 +1,10 @@
 /** @format */
 
 import { combineReducers } from "redux";
-import tacoReducer from "./reducers/taco.reducers";
+import menuReducer from "./reducers/menu.reducers";
 import cookReducer from "./reducers/order.reducers";
 
 export default combineReducers({
-  getMenuData: tacoReducer,
+  getMenuData: menuReducer,
   getOrderData: cookReducer,
 });
