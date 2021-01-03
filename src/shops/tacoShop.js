@@ -7,7 +7,9 @@ export const tacoShop = {
   logoAlt: "taco",
   primaryColor: "yellow",
   secondaryColor: "blue",
-  menuItems: [
+};
+
+export const tacoMenu =   [
     {
       name: "Corona",
       key: "corona",
@@ -48,4 +50,3 @@ export const tacoShop = {
       title: "A Thick and Hearty Taco",
     },
   ],
-};

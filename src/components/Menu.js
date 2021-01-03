@@ -45,12 +45,14 @@ const Menu = ({ handleMinus, handlePlus, submitOrder }) => {
   const classes = useStyles();
 
   const {
-    shopData,
     activeOrder,
     totalCost,
     customerName,
+    menuItems,
     showMenuToggler,
   } = useSelector((state) => state.getMenuData);
+
+  console.log(menuItems);
 
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -63,7 +65,7 @@ const Menu = ({ handleMinus, handlePlus, submitOrder }) => {
   return (
     <div>
       <div className={classes.main}>
-        {shopData.menuItems.map((menuItem) => {
+        {menuItems.map((menuItem) => {
           return (
             <MenuItem
               key={menuItem.key}

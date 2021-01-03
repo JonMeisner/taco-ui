@@ -87,11 +87,17 @@ const App = () => {
   }, []);
 
   const onMessage = (event) => {
+    console.log(
+      event.data.openMenu === true,
+      showMenu.showMenuToggler == false,
+      showMenu.customerName === ""
+    );
     if (
       event.data.openMenu === true &&
       showMenu.showMenuToggler == false &&
       showMenu.customerName === ""
     ) {
+      console.log("hit", event.data);
       dispatch(actions.initializeMenu(event.data));
       dispatch(cookActions.setOrderList(event.data.orderList));
 
