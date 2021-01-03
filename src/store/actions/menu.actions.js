@@ -29,13 +29,22 @@ export const hideMenuToggler = () => ({
 // // dispatch(
 //   actions.setMenuData(event.data.openMenu, event.data.customerName)
 // );
-export const initializeApp = ({ openMenu, customerName, shopData }) => ({
-  // Show UI & assign customer name
-  type: INITIALIZE_MENU,
-  payload: { toggle: openMenu, name: customerName, shopData },
-});
+export const initializeMenu = ({ openMenu, customerName, shopData }) => {
+  const emptyOrder = {};
+  shopData.menuItems.forEach((item) => (emptyOrder[item.key] = 0));
 
-export const addOrderItem = (item, order) => ({
+  return {
+    type: INITIALIZE_MENU,
+    payload: {
+      toggle: openMenu,
+      name: customerName,
+      shopData,
+      emptyOrder,
+    },
+  };
+};
+
+export const addOrderItem = (item) => ({
   type: UPDATE_ORDER_ITEM,
   payload: {
     key: item.key,
@@ -44,7 +53,7 @@ export const addOrderItem = (item, order) => ({
   },
 });
 
-export const removeOrderItem = (item, order) => ({
+export const removeOrderItem = (item) => ({
   type: UPDATE_ORDER_ITEM,
   payload: {
     key: item.key,

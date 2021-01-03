@@ -92,7 +92,7 @@ const App = () => {
       showMenu.showMenuToggler == false &&
       showMenu.customerName === ""
     ) {
-      dispatch(actions.initializeApp(event.data));
+      dispatch(actions.initializeMenu(event.data));
       dispatch(cookActions.setOrderList(event.data.orderList));
 
       // dispatch(actions.showMenuToggler())

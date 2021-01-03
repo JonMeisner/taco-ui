@@ -56,9 +56,9 @@ const Menu = ({ handleMinus, handlePlus, submitOrder }) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
-  if (!showMenuToggler) {
-    return <>fdsfds</>;
-  }
+  // if (!showMenuToggler) {
+  //   return <></>;
+  // }
 
   return (
     <div>
@@ -70,7 +70,7 @@ const Menu = ({ handleMinus, handlePlus, submitOrder }) => {
               handleMinus={handleMinus}
               handlePlus={handlePlus}
               item={menuItem}
-              orderQuantity={activeOrder[menuItem.key] || 0}
+              orderQuantity={activeOrder[menuItem.key]}
             />
           );
         })}

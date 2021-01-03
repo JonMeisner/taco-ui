@@ -7,7 +7,7 @@ const initialState = {
   customerName: "",
   totalCost: 0,
   activeOrder: {},
-  shopData: {},
+  shopData: { menuItems: [{}] },
 };
 
 const menuReducer = (state = initialState, action) => {
@@ -28,9 +28,8 @@ const menuReducer = (state = initialState, action) => {
     //         customerName: action.payload,
     //     };
     case types.UPDATE_ORDER_ITEM:
-      const newQuantity = !state.activeOrder[action.payload.key]
-        ? action.payload.quantityDiff
-        : state.activeOrder[action.payload.key] + action.payload.quantityDiff;
+      const newQuantity =
+        state.activeOrder[action.payload.key] + action.payload.quantityDiff;
 
       return {
         ...state,
@@ -49,6 +48,7 @@ const menuReducer = (state = initialState, action) => {
         showMenuToggler: action.payload.toggle,
         customerName: action.payload.name,
         shopData: action.payload.shopData,
+        activeOrder: action.payload.emptyOrder,
       };
     case types.SET_SHOP_DATA:
       return { ...state, shopData: action.payload.shopData };
