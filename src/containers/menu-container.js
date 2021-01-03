@@ -1,7 +1,7 @@
 /** @format */
 
 //main react
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 //components
 import Menu from "../components/menu";
@@ -14,50 +14,34 @@ import * as selectors from "../store/selectors/taco.selectors";
 import Header from "../components/header";
 import { useParams } from "react-router-dom";
 import { Typography } from "@material-ui/core";
-import { tacoShop } from "../shops/tacoShop";
-
-const fetchShopData = async (id) => {
-  // TODO: add api support for shop data, make api request here
-  return new Promise((resolve, reject) => {
-    resolve(tacoShop);
-  });
-};
+import { useShopLoader } from "../hooks/useShopLoader";
 
 const MenuContainer = ({ submitOrder, closeApplication }) => {
-  const dispatch = useDispatch();
   const { id } = useParams();
+  const dispatch = useDispatch();
 
-  const data = useSelector((state) => state.getMenuData);
-
-  useEffect(() => {
-    fetchShopData().then((data) => {
-      dispatch(actions.setShopData(data));
-    });
-  }, []);
+  const { isLoading } = useShopLoader(id);
+  const { shopData, orderList } = useSelector((state) => state.getMenuData);
 
   const handlePlus = (item) => {
-    dispatch(actions.addOrderItem(item, data.orderList));
+    dispatch(actions.addOrderItem(item, orderList));
   };
 
   const handleMinus = (item) => {
-    dispatch(actions.removeOrderItem(item, data.orderList));
+    dispatch(actions.removeOrderItem(item, orderList));
   };
 
-  if (!Object.keys(data.shopData).length) {
+  if (isLoading) {
     return <Typography>Loading</Typography>;
   }
 
   return (
     <>
-      <Header closeApplication={closeApplication} store={data.shopData} />
+      <Header closeApplication={closeApplication} store={shopData} />
       <Menu
-        shop={data.shopData}
-        orderList={data.orderList}
-        totalCost={data.totalCost}
-        customerName={data.customerName}
         handlePlus={handlePlus}
         handleMinus={handleMinus}
-        orderTacos={submitOrder}
+        submitOrder={submitOrder}
       />
     </>
   );

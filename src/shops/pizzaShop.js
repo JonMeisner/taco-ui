@@ -2,6 +2,7 @@
 
 export const pizzaShop = {
   name: "Tony's Pizza",
+  id: "tonys-pizza",
   logo: "./src/assets/theTacoFarmer.png",
   logoAlt: "taco",
   primaryColor: "red",

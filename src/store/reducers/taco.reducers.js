@@ -54,7 +54,8 @@ const tacoReducer = (state = initialState, action) => {
     //         customerName: action.payload,
     //     };
     case types.UPDATE_ORDER_ITEM:
-      const newItem = !state.orderList[action.payload.key]
+      // this is the messiest logic i've ever seen in my entire life
+      const newQuantity = !state.orderList[action.payload.key]
         ? action.payload.quantityDiff
         : state.orderList[action.payload.key] + action.payload.quantityDiff;
 
@@ -62,9 +63,12 @@ const tacoReducer = (state = initialState, action) => {
         ...state,
         orderList: {
           ...state.orderList,
-          [action.payload.key]: newItem > 0 ? newItem : 0,
+          [action.payload.key]: newQuantity >= 0 ? newQuantity : 0,
         },
-        totalCost: state.totalCost + action.payload.costDiff,
+        totalCost:
+          newQuantity >= 0
+            ? state.totalCost + action.payload.costDiff
+            : state.totalCost,
       };
     case types.INITIALIZE_MENU:
       return {

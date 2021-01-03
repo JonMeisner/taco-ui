@@ -10,9 +10,7 @@ import { makeStyles } from "@material-ui/core";
 import { useDispatch, connect, useSelector } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import * as actions from "./store/actions/taco.actions";
-import * as selectors from "./store/selectors/taco.selectors";
 import * as cookActions from "./store/actions/order.actions";
-import * as cookSelectors from "./store/selectors/order.selectors";
 
 import MenuContainer from "./containers/menu-container";
 import OrderContainer from "./containers/order-container";
@@ -46,27 +44,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const mapStateToProps = createStructuredSelector({
-  toggleState: selectors.getMenuData,
-  cookStuff: cookSelectors.getOrderData,
-});
+const mapStateToProps = createStructuredSelector({});
 
-const App = (toggleState, cookStuff) => {
+const App = (props) => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const showMenu = useSelector((state) => state.getMenuData);
 
-  const orderTacos = (orderPass) => {
-    //console.log(orderPass)
-    apis.orderTacos(orderPass);
+  // todo: define order pass
+  const submitOrder = (orderPass) => {
+    apis.submitOrder(orderPass);
   };
 
   const closeApplication = () => {
-    apis.closeTacos();
+    apis.closeMenu();
     dispatch(actions.clearMenu());
     dispatch(cookActions.ClearOrderData());
-    //dispatch(actions.hideMenuToggler());
-    //dispatch(cookActions.HideCookMenu());
   };
 
   useEffect(() => {
@@ -104,40 +97,26 @@ const App = (toggleState, cookStuff) => {
       dispatch(
         actions.setMenuData(event.data.openMenu, event.data.customerName)
       );
-      dispatch(cookActions.SetOrderList(event.data.orderList));
       // dispatch(actions.showMenuToggler())
       // dispatch(actions.setCustomerName(event.data.customer))
-      // dispatch(cookActions.SetOrderList([{type: 0, customer: 'Derek Fhreebs', spicy: 2, carne: 5, green: 1, corona: 2, cost: 1500},{type: 1, customer: 'Eduardo', spicy: 11, carne: 0, green: 2, corona: 6, cost: 20000}]))
     }
     if (event.data.openMenu === false) {
       dispatch(actions.hideMenuToggler());
     }
-    // if (event.data.openCook === true) {
-    //     dispatch(cookActions.ShowCookMenu())
-    //     dispatch(cookActions.SetOrderList([{Customer: 'Sax', Spicy: 2, Carne: 0, Green: 1, Rona: 2, Cost: 1500}]))
-    // }
-    // if (event.data.openCook === false) {
-    //     dispatch(cookActions.HideCookMenu())
-    // }
   };
 
   return (
     <div className={showMenu.showMenuToggler ? classes.show : classes.hide}>
       <Router>
         <Switch>
-          <Route exact path="/shop/:shopId">
+          <Route exact path="/menu/:shopId">
             <MenuContainer
-              submitOrder={orderTacos}
-              store={tacoShop}
+              submitOrder={submitOrder}
               closeApplication={closeApplication}
             />
           </Route>
           <Route exact path="/orders/:shopId">
-            <MenuContainer
-              submitOrder={orderTacos}
-              store={tacoShop}
-              closeApplication={closeApplication}
-            />
+            <OrderContainer closeApplication={closeApplication} />
           </Route>
         </Switch>
       </Router>

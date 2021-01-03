@@ -9,6 +9,7 @@ import {
   Button,
 } from "@material-ui/core";
 import MenuItem from "./menu-item";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles({
   main: {
@@ -40,16 +41,12 @@ const useStyles = makeStyles({
   },
 });
 
-const Menu = ({
-  orderList,
-  handleMinus,
-  handlePlus,
-  orderTacos,
-  totalCost,
-  customerName,
-  shop,
-}) => {
+const Menu = ({ handleMinus, handlePlus, submitOrder }) => {
   const classes = useStyles();
+
+  const { shopData, orderList, totalCost, customerName } = useSelector(
+    (state) => state.getMenuData
+  );
 
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -57,7 +54,7 @@ const Menu = ({
   return (
     <div>
       <div className={classes.main}>
-        {shop.menuItems.map((menuItem) => {
+        {shopData.menuItems.map((menuItem) => {
           return (
             <MenuItem
               key={menuItem.key}
@@ -82,7 +79,7 @@ const Menu = ({
           <Button
             className={classes.orderButton}
             variant="outlined"
-            onClick={() => orderTacos([])}
+            onClick={() => submitOrder([])}
           >
             ORDER
           </Button>

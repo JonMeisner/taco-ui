@@ -1,44 +1,49 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import * as apis from "../apis/apis";
 
 // import order
-import { useDispatch, connect, useSelector } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import * as cookActions from "../store/actions/order.actions";
 import * as cookSelectors from "../store/selectors/order.selectors";
 import OrderViews from "../components/order-views";
+import Header from "../components/header";
+import { useOrderLoader } from "../hooks/useOrderLoader";
 
-const OrderContainer = (props) => {
-  //const dispatch = useDispatch();
-  const data = useSelector((state) => state.getOrderData);
-  //console.log(data.orderList);
+const title = "Current Orders";
+const buttonPressText = "Cook";
 
-  const title = "Current Orders";
-  const buttonPressText = "Cook";
+const OrderContainer = ({ closeApplication }) => {
+  useOrderLoader();
+  const orderData = useSelector((state) => state.getOrderData);
+  console.log(orderData);
+
   const cookOrder = (orderFinal) => {
-    if (orderFinal.type === 0) {
-      apis.cookTacos([orderFinal]);
+    // orderFinal: shop - shop front order, 1? - delivery
+    if (orderFinal.type === "shop") {
+      apis.cookOrder([orderFinal]);
     } else {
-      console.log([orderFinal]);
-      apis.cookDelivery([orderFinal]);
+      apis.cookDeliveryOrder([orderFinal]);
     }
   };
 
   const deleteOrder = (deletedOrder) => {
     apis.deleteOrder([deletedOrder]);
-    props.closeApplication();
+    closeApplication();
   };
 
   return (
-    <OrderViews
-      title={title}
-      buttonePressText={buttonPressText}
-      data={data.orderList}
-      cookOrder={cookOrder}
-      deleteOrder={deleteOrder}
-    />
+    <>
+      <Header closeApplication={closeApplication} />
+      <OrderViews
+        title={title}
+        buttonPressText={buttonPressText}
+        data={orderData.orderList}
+        cookOrder={cookOrder}
+        deleteOrder={deleteOrder}
+      />
+    </>
   );
 };
 

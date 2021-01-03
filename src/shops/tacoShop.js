@@ -1,5 +1,8 @@
+/** @format */
+
 export const tacoShop = {
   name: "The Taco Farmer",
+  id: "taco-farmer",
   logo: "./src/assets/theTacoFarmer.png",
   logoAlt: "taco",
   primaryColor: "yellow",
@@ -46,4 +49,3 @@ export const tacoShop = {
     },
   ],
 };
-

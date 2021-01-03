@@ -1,27 +1,57 @@
-import axios from 'axios';
+/** @format */
 
-const closeTacosUrl = 'http://pma-tacos/closeTacos'
-const orderTacosUrl = 'http://pma-tacos/orderTacos'
-const cookTacosUrl  = 'http://pma-tacos/cookTacos'
-const cookDeliveryUrl = 'http://pma-tacos/cookDelivery'
-const deleteOrderUrl = 'http://pma-tacos/deleteOrder'
+import { Restaurant } from "@material-ui/icons";
+import axios from "axios";
 
-export const closeTacos = () => {
-    return axios.post(closeTacosUrl,{})
-}
+// const closeTacosUrl = "http://pma-tacos/closeTacos"; // closes window
+// const orderTacosUrl = "http://pma-tacos/orderTacos"; // submit order
+// const cookTacosUrl = "http://pma-tacos/cookTacos"; // create items
+// const cookDeliveryUrl = "http://pma-tacos/cookDelivery"; // ???????????
+// const deleteOrderUrl = "http://pma-tacos/deleteOrder"; // delete order
 
-export const orderTacos = (orderPass) => {
-    return axios.post(orderTacosUrl, {orderPass})
-}
+// export const closeTacos = () => {
+//   return axios.post(closeTacosUrl, {});
+// };
 
-export const cookTacos = (cookOrder) => {
-    return axios.post(cookTacosUrl, {cookOrder})
-}
+// export const orderTacos = (orderPass) => {
+//   return axios.post(orderTacosUrl, { orderPass });
+// };
 
-export const cookDelivery = (deliveryOrder) => {
-    return axios.post(cookDeliveryUrl, {deliveryOrder})
-}
+// export const cookTacos = (cookOrder) => {
+//   // how does this request know who to give the tacos to?
+//   return axios.post(cookTacosUrl, { cookOrder });
+// };
+
+// export const cookDelivery = (deliveryOrder) => {
+//   return axios.post(cookDeliveryUrl, { deliveryOrder });
+// };
+
+// export const deleteOrder = (deletedOrder) => {
+//   return axios.post(deleteOrderUrl, { deletedOrder });
+// };
+
+const closeMenuUrl = "http://pma-restaurants/closeMenu"; // previously closeTacos
+const submitOrderUrl = "http://pma-restaurants/submitOrder"; // previously orderTacos
+const deleteOrderUrl = "http://pma-restaurants/deleteOrder"; // no change
+const cookOrderUrl = "http://pma-restaurants/cookOrder"; // previously cookTacos
+const cookDeliveryOrderUrl = "http://pma-restaurants/cookDeliveryOrder"; // previously cookDelivery
+
+export const closeMenu = () => {
+  return axios.post(closeMenuUrl, {});
+};
+
+export const submitOrder = (orderPass) => {
+  return axios.post(submitOrderUrl, { orderPass });
+};
+
+export const cookOrder = (cookOrder) => {
+  return axios.post(cookOrderUrl, { cookOrder });
+};
+
+export const cookDeliveryOrder = (deliveryOrder) => {
+  return axios.post(cookDeliveryOrderUrl, { deliveryOrder });
+};
 
 export const deleteOrder = (deletedOrder) => {
-    return axios.post(deleteOrderUrl, {deletedOrder})
-}
+  return axios.post(deleteOrderUrl, { deletedOrder });
+};
