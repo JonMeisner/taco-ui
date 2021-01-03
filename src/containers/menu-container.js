@@ -18,7 +18,7 @@ import { useShopLoader } from "../hooks/useShopLoader";
 
 const MenuContainer = ({ submitOrder, closeApplication }) => {
   const { shopId } = useParams();
-  console.log("ID", shopId);
+
   const dispatch = useDispatch();
 
   const { isLoading } = useShopLoader(shopId);

@@ -27,7 +27,7 @@ const getShopData = (shopId) => {
 
 export const useShopLoader = () => {
   const { shopId } = useParams();
-  console.log(shopId);
+
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -40,7 +40,6 @@ export const useShopLoader = () => {
 
   const memoGet = useCallback(() => {
     setIsLoading(false);
-
     dispatch(actions.setShopData(getShopData(shopId)));
   });
 

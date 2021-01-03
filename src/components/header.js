@@ -12,6 +12,7 @@ import {
 import { Link, Router } from "react-router-dom";
 import ExitToApp from "@material-ui/icons/ExitToApp";
 import { useSelector } from "react-redux";
+import { useShopLoader } from "../hooks/useShopLoader";
 
 const useStyles = makeStyles((theme) => ({
   buttonGroup: {
@@ -21,6 +22,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = ({ closeApplication }) => {
   const classes = useStyles();
+
+  useShopLoader();
   const { shopData } = useSelector((state) => state.getMenuData);
 
   return (

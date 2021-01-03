@@ -16,11 +16,8 @@ const buttonPressText = "Cook";
 
 const OrderContainer = ({ closeApplication }) => {
   useOrderLoader();
-  const orderData = useSelector((state) => state.getOrderData);
-  console.log(orderData);
 
   const cookOrder = (orderFinal) => {
-    // orderFinal: shop - shop front order, 1? - delivery
     if (orderFinal.type === "shop") {
       apis.cookOrder([orderFinal]);
     } else {
