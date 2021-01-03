@@ -13,6 +13,7 @@ const fetchOrderData = async (shopId) => {
   });
 };
 
+// I dont think this isn't needed if we're going to be relying on message data
 export const useOrderLoader = () => {
   const { shopId } = useParams();
   const dispatch = useDispatch();
