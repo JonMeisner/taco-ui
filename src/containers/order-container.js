@@ -9,13 +9,11 @@ import { createStructuredSelector } from "reselect";
 import * as cookSelectors from "../store/selectors/order.selectors";
 import OrderViews from "../components/order-views";
 import Header from "../components/header";
-import { useOrderLoader } from "../hooks/useOrderLoader";
 
 const title = "Current Orders";
 const buttonPressText = "Cook";
 
 const OrderContainer = ({ closeApplication }) => {
-  useOrderLoader();
   const orderData = useSelector((state) => state.getOrderData);
 
   const cookOrder = (orderFinal) => {

@@ -21,10 +21,18 @@ export const hideMenuToggler = () => ({
 //     payload: name,
 // })
 
-export const setMenuData = (toggle, name) => ({
+// export const setMenuData = (toggle, name) => ({
+//   // Show UI & assign customer name
+//   type: INITIALIZE_MENU,
+//   payload: { toggle, name },
+// });
+// // dispatch(
+//   actions.setMenuData(event.data.openMenu, event.data.customerName)
+// );
+export const initializeApp = ({ openMenu, customerName, shopData }) => ({
   // Show UI & assign customer name
   type: INITIALIZE_MENU,
-  payload: { toggle, name },
+  payload: { toggle: openMenu, name: customerName, shopData },
 });
 
 export const addOrderItem = (item, order) => ({

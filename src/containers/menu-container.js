@@ -7,33 +7,27 @@ import React from "react";
 import Menu from "../components/menu";
 
 //store
-import { useDispatch, connect, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import * as actions from "../store/actions/menu.actions";
 import * as selectors from "../store/selectors/menu.selectors";
 import Header from "../components/header";
-import { useParams } from "react-router-dom";
-import { useShopLoader } from "../hooks/useShopLoader";
 
 const MenuContainer = ({ submitOrder, closeApplication }) => {
-  const { shopId } = useParams();
-
   const dispatch = useDispatch();
-
-  useShopLoader(shopId);
-  const { shopData, orderList } = useSelector((state) => state.getMenuData);
+  const { activeOrder } = useSelector((state) => state.getMenuData);
 
   const handlePlus = (item) => {
-    dispatch(actions.addOrderItem(item, orderList));
+    dispatch(actions.addOrderItem(item, activeOrder));
   };
 
   const handleMinus = (item) => {
-    dispatch(actions.removeOrderItem(item, orderList));
+    dispatch(actions.removeOrderItem(item, activeOrder));
   };
 
   return (
     <>
-      <Header closeApplication={closeApplication} store={shopData} />
+      <Header closeApplication={closeApplication} />
       <Menu
         handlePlus={handlePlus}
         handleMinus={handleMinus}

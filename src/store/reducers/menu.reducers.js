@@ -6,7 +6,7 @@ const initialState = {
   showMenuToggler: false,
   customerName: "",
   totalCost: 0,
-  orderList: {},
+  activeOrder: {},
   shopData: {},
 };
 
@@ -28,15 +28,14 @@ const menuReducer = (state = initialState, action) => {
     //         customerName: action.payload,
     //     };
     case types.UPDATE_ORDER_ITEM:
-      // this is the messiest logic i've ever seen in my entire life
-      const newQuantity = !state.orderList[action.payload.key]
+      const newQuantity = !state.activeOrder[action.payload.key]
         ? action.payload.quantityDiff
-        : state.orderList[action.payload.key] + action.payload.quantityDiff;
+        : state.activeOrder[action.payload.key] + action.payload.quantityDiff;
 
       return {
         ...state,
-        orderList: {
-          ...state.orderList,
+        activeOrder: {
+          ...state.activeOrder,
           [action.payload.key]: newQuantity >= 0 ? newQuantity : 0,
         },
         totalCost:
@@ -49,6 +48,7 @@ const menuReducer = (state = initialState, action) => {
         ...state,
         showMenuToggler: action.payload.toggle,
         customerName: action.payload.name,
+        shopData: action.payload.shopData,
       };
     case types.SET_SHOP_DATA:
       return { ...state, shopData: action.payload.shopData };
@@ -57,7 +57,7 @@ const menuReducer = (state = initialState, action) => {
         ...state,
         customerName: "",
         totalCost: 0,
-        orderList: {},
+        activeOrder: {},
         showMenuToggler: false,
       };
     default:

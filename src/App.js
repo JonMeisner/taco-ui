@@ -14,8 +14,6 @@ import * as cookActions from "./store/actions/order.actions";
 
 import MenuContainer from "./containers/menu-container";
 import OrderContainer from "./containers/order-container";
-import { tacoShop } from "./shops/tacoShop";
-import { pizzaShop } from "./shops/pizzaShop";
 
 const useStyles = makeStyles((theme) => ({
   show: {
@@ -88,16 +86,15 @@ const App = () => {
     dispatch(actions.clearMenu());
   }, []);
 
-  // should we be just sending shop and menu data through the message event?
   const onMessage = (event) => {
     if (
       event.data.openMenu === true &&
       showMenu.showMenuToggler == false &&
       showMenu.customerName === ""
     ) {
-      dispatch(
-        actions.setMenuData(event.data.openMenu, event.data.customerName)
-      );
+      dispatch(actions.initializeApp(event.data));
+      dispatch(cookActions.setOrderList(event.data.orderList));
+
       // dispatch(actions.showMenuToggler())
       // dispatch(actions.setCustomerName(event.data.customer))
     }
@@ -110,13 +107,13 @@ const App = () => {
     <div className={showMenu.showMenuToggler ? classes.show : classes.hide}>
       <Router>
         <Switch>
-          <Route exact path="/menu/:shopId">
+          <Route exact path="/menu">
             <MenuContainer
               submitOrder={submitOrder}
               closeApplication={closeApplication}
             />
           </Route>
-          <Route exact path="/orders/:shopId">
+          <Route exact path="/orders">
             <OrderContainer closeApplication={closeApplication} />
           </Route>
         </Switch>

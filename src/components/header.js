@@ -12,7 +12,6 @@ import {
 import { Link, Router } from "react-router-dom";
 import ExitToApp from "@material-ui/icons/ExitToApp";
 import { useSelector } from "react-redux";
-import { useShopLoader } from "../hooks/useShopLoader";
 
 const useStyles = makeStyles((theme) => ({
   buttonGroup: {
@@ -22,8 +21,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = ({ closeApplication }) => {
   const classes = useStyles();
-
-  useShopLoader();
   const { shopData } = useSelector((state) => state.getMenuData);
 
   return (
@@ -36,18 +33,10 @@ const Header = ({ closeApplication }) => {
           width="200"
         />
         <ButtonGroup className={classes.buttonGroup}>
-          <Button
-            component={Link}
-            to={`/menu/${shopData.id}`}
-            variant="outlined"
-          >
+          <Button component={Link} to={"/menu"} variant="outlined">
             Menu
           </Button>
-          <Button
-            component={Link}
-            to={`/orders/${shopData.id}`}
-            variant="outlined"
-          >
+          <Button component={Link} to={"/orders"} variant="outlined">
             Orders
           </Button>
         </ButtonGroup>
