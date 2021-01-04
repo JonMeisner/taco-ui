@@ -12,6 +12,7 @@ import {
   DialogContentText,
   DialogActions,
 } from "@material-ui/core";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -36,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
   title: {},
   labels: {
     margin: "8px",
+    marginRight: 21,
   },
   customerName: {
     margin: "8px",
@@ -44,8 +46,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const OrderViews = (props) => {
+const QuantityDetails = ({ orderItems, menuItems }) => {
   const classes = useStyles();
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        flex: 1,
+        justifyContent: "flex-end",
+        marginRight: 21,
+      }}
+    >
+      {menuItems.map((mItem) => {
+        return (
+          <Typography className={classes.labels} variant="h6">
+            {mItem.shortName}: {orderItems[mItem.key] || 0}
+          </Typography>
+        );
+      })}
+    </div>
+  );
+};
+
+const OrderViews = ({ orderList, menuItems, deleteOrder }) => {
+  const classes = useStyles();
+
   const [open, setOpen] = useState(false);
   const [currentOrder, setCurrentOrder] = useState();
 
@@ -56,7 +83,7 @@ const OrderViews = (props) => {
 
   const handleClose = (ready) => {
     if (ready === true) {
-      props.deleteOrder(currentOrder);
+      deleteOrder(currentOrder);
       setOpen(false);
     } else {
       setOpen(false);
@@ -70,7 +97,7 @@ const OrderViews = (props) => {
   return (
     <div>
       <div className={classes.main}>
-        {props.data.length === 0 ? (
+        {orderList.length === 0 ? (
           <Paper className={classes.paperPlayer}>
             <Typography className={classes.labels} variant="h6">
               No Open Orders
@@ -78,26 +105,30 @@ const OrderViews = (props) => {
           </Paper>
         ) : null}
 
-        {props.data.map((Label, index) => (
+        {orderList.map((Label, orderIndex) => (
           <Paper
             className={
-              props.data[index].type === 0
+              orderList[orderIndex].type === 0
                 ? classes.paperPlayer
                 : classes.paperDelivery
             }
-            key={index}
+            key={orderIndex}
             elevation={3}
           >
             <Typography className={classes.customerName} variant="h6">
-              {props.data[index].customer}
+              {orderList[orderIndex].customer}
             </Typography>
+            <QuantityDetails
+              orderItems={orderList[orderIndex].items}
+              menuItems={menuItems}
+            />
             <Typography className={classes.labels} variant="h6">
-              Cost: ${numberWithCommas(props.data[index].cost)}
+              Cost: ${numberWithCommas(orderList[orderIndex].cost)}
             </Typography>
             <Button
               variant="outlined"
               className={classes.labels}
-              onClick={() => props.cookOrder(props.data[index])}
+              onClick={() => cookOrder(orderList[orderIndex])}
             >
               Cook
             </Button>
@@ -105,7 +136,7 @@ const OrderViews = (props) => {
               variant="outlined"
               className={classes.labels}
               color="secondary"
-              onClick={() => handleClickOpen(props.data[index])}
+              onClick={() => handleClickOpen(orderList[orderIndex])}
             >
               Delete
             </Button>
@@ -135,5 +166,5 @@ const OrderViews = (props) => {
     </div>
   );
 };
-//onClick={() => props.deleteOrder(props.data[index])}
+
 export default OrderViews;

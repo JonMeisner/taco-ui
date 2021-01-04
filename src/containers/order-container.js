@@ -15,6 +15,7 @@ const buttonPressText = "Cook";
 
 const OrderContainer = ({ closeApplication }) => {
   const orderData = useSelector((state) => state.getOrderData);
+  const { menuItems } = useSelector((state) => state.getMenuData);
 
   const cookOrder = (orderFinal) => {
     if (orderFinal.type === "shop") {
@@ -35,7 +36,8 @@ const OrderContainer = ({ closeApplication }) => {
       <OrderViews
         title={title}
         buttonPressText={buttonPressText}
-        data={orderData.orderList}
+        orderList={orderData.orderList}
+        menuItems={menuItems}
         cookOrder={cookOrder}
         deleteOrder={deleteOrder}
       />
