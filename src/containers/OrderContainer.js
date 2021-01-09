@@ -26,7 +26,7 @@ const OrderContainer = ({ closeApplication }) => {
   };
 
   const deleteOrder = (deletedOrder) => {
-    // apis.deleteOrder([deletedOrder]);
+    apis.deleteOrder([deletedOrder]);
   };
 
   return (
