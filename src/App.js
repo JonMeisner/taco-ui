@@ -1,8 +1,13 @@
 /** @format */
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import * as apis from "./apis/apis";
-import { HashRouter as Router, Switch, Route, useHistory } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  useHistory,
+} from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core";
 
@@ -11,6 +16,7 @@ import { useDispatch, connect, useSelector } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import * as actions from "./store/actions/menu.actions";
 import * as cookActions from "./store/actions/order.actions";
+import Header from "./components/header";
 
 import MenuContainer from "./containers/menu-container";
 import OrderContainer from "./containers/order-container";
@@ -45,23 +51,16 @@ const useStyles = makeStyles((theme) => ({
 const mapStateToProps = createStructuredSelector({});
 
 const App = () => {
-  const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
   const showMenu = useSelector((state) => state.getMenuData);
-
-  // todo: define order pass
-  const submitOrder = (orderPass) => {
-    apis.submitOrder(orderPass);
-    dispatch(actions.clearMenu());
-    console.log(orderPass);
-  };
+  const [initialRoute, setInitialRoute] = useState("/");
 
   const closeApplication = () => {
     apis.closeMenu();
+    dispatch(actions.hideMenuToggler());
     dispatch(actions.clearMenu());
     dispatch(cookActions.ClearOrderData());
-    history.push("/");
   };
 
   useEffect(() => {
@@ -91,37 +90,25 @@ const App = () => {
   }, []);
 
   const onMessage = (event) => {
-    console.log(
-      event.data.openMenu === true,
-      showMenu.showMenuToggler == false,
-      showMenu.customerName === ""
-    );
-    if (
-      event.data.openMenu === true &&
-      showMenu.showMenuToggler == false &&
-      showMenu.customerName === ""
-    ) {
-      console.log("hit", event.data);
-      dispatch(actions.initializeMenu(event.data.data));
-      dispatch(cookActions.setOrderList(event.data.data.orderList));
-
-      // dispatch(actions.showMenuToggler())
-      // dispatch(actions.setCustomerName(event.data.customer))
-    }
-    if (event.data.openMenu === false) {
-      dispatch(actions.hideMenuToggler());
+    if (event.data.openMenu === true) {
+      setInitialRoute(event.data.initialRoute);
+      dispatch(actions.initializeMenu(event.data));
+      dispatch(cookActions.setOrderList(event.data.orderList));
+    } else {
+      closeApplication();
     }
   };
 
   return (
     <div className={showMenu.showMenuToggler ? classes.show : classes.hide}>
       <Router>
+        <Header
+          closeApplication={closeApplication}
+          initialRoute={initialRoute}
+        />
         <Switch>
-          <Route exact path="/">
-            <MenuContainer
-              submitOrder={submitOrder}
-              closeApplication={closeApplication}
-            />
+          <Route exact path="/menu">
+            <MenuContainer closeApplication={closeApplication} />
           </Route>
           <Route exact path="/orders">
             <OrderContainer closeApplication={closeApplication} />

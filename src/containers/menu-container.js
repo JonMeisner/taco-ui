@@ -11,9 +11,9 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import * as actions from "../store/actions/menu.actions";
 import * as selectors from "../store/selectors/menu.selectors";
-import Header from "../components/header";
+import * as apis from "../apis/apis";
 
-const MenuContainer = ({ submitOrder, closeApplication }) => {
+const MenuContainer = ({ closeApplication }) => {
   const dispatch = useDispatch();
   const { activeOrder } = useSelector((state) => state.getMenuData);
 
@@ -25,15 +25,17 @@ const MenuContainer = ({ submitOrder, closeApplication }) => {
     dispatch(actions.removeOrderItem(item, activeOrder));
   };
 
+  const submitOrder = (orderPass) => {
+    apis.submitOrder(orderPass);
+    dispatch(actions.clearMenu());
+  };
+
   return (
-    <>
-      <Header closeApplication={closeApplication} />
-      <Menu
-        handlePlus={handlePlus}
-        handleMinus={handleMinus}
-        submitOrder={submitOrder}
-      />
-    </>
+    <Menu
+      handlePlus={handlePlus}
+      handleMinus={handleMinus}
+      submitOrder={submitOrder}
+    />
   );
 };
 

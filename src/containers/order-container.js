@@ -27,13 +27,11 @@ const OrderContainer = ({ closeApplication }) => {
   };
 
   const deleteOrder = (deletedOrder) => {
-    apis.deleteOrder([deletedOrder]);
-    // closeApplication();
+    // apis.deleteOrder([deletedOrder]);
   };
 
   return (
     <>
-      <Header closeApplication={closeApplication} />
       <OrderViews
         title={title}
         buttonPressText={buttonPressText}

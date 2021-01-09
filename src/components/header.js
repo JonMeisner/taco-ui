@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   AppBar,
   Toolbar,
@@ -9,7 +9,7 @@ import {
   Button,
   makeStyles,
 } from "@material-ui/core";
-import { Link, Router } from "react-router-dom";
+import { Link, Router, useHistory } from "react-router-dom";
 import ExitToApp from "@material-ui/icons/ExitToApp";
 import { useSelector } from "react-redux";
 
@@ -19,11 +19,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = ({ closeApplication, job }) => {
+const Header = ({ closeApplication, initialRoute }) => {
   const classes = useStyles();
+  const history = useHistory();
   const { shopData, workerJob } = useSelector((state) => state.getMenuData);
-  console.log(shopData.job);
-  console.log(workerJob);
+
+  useEffect(() => {
+    history.push(initialRoute);
+  }, [initialRoute]);
 
   return (
     <AppBar position="sticky" color="default">
@@ -35,14 +38,24 @@ const Header = ({ closeApplication, job }) => {
           width="50"
         />
         <ButtonGroup className={classes.buttonGroup}>
-          <Button component={Link} to={"/"} variant="outlined">
+          <Button component={Link} to={"/menu"} variant="outlined">
             Menu
           </Button>
-          <Button component={Link} to={"/orders"} variant="outlined"  disabled={workerJob === shopData.job ? false : true}>
+          <Button
+            component={Link}
+            to={"/orders"}
+            variant="outlined"
+            disabled={workerJob === shopData.job ? false : true}
+          >
             Orders
           </Button>
         </ButtonGroup>
-        <IconButton style={{ marginLeft: "10px" }} onClick={closeApplication} component={Link} to={"/"}>
+        <IconButton
+          style={{ marginLeft: "10px" }}
+          onClick={closeApplication}
+          component={Link}
+          to={"/"}
+        >
           <ExitToApp />
         </IconButton>
       </Toolbar>
