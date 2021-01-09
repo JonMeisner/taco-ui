@@ -1,3 +1,152 @@
+<!-- @format -->
+
+## PMA Restaurant Application
+
+### NUI Message Structure
+
+#### On Open
+
+```
+{
+  "openMenu": true,
+  "initialRoute": "menu", // the route showing when you open the app
+  "customerName": "New customer", // prefilled customer name for order
+  "shopData": {
+    "name": "Pie shop",
+    "id": "pie-shop",
+    "logo": "./src/assets/pie-logo.png",
+    "logoAlt": "pies",
+    "primaryColor": "orange", // header color
+    "secondaryColor": "green" // unused currently
+  },
+  "menuItems": [
+    {
+      "name": "Apple pie",
+      "shortName": "apple", //name used in order list
+      "key": "apple_pie",
+      "description": "Yummy apple pie",
+      "price": 500,
+      "altString": "Apple Pie",
+      "img": "./src/assets/apple_pie.png",
+      "title": "A slice of apple pie"
+    },
+    {
+      "name": "Banana cream pie",
+      "shortName": "Banana",
+      "key": "banana_cream_pie",
+      "description": "Yummy banana cream pie",
+      "price": 500,
+      "altString": "Banana cream Pie",
+      "img": "./src/assets/banana_cream_pie.png",
+      "title": "A slice of banana cream pie"
+    },
+    {
+      "name": "Pumpkin pie",
+      "shortName": "pumpkin",
+      "key": "pumpkin_pie",
+      "description": "Yummy pumpkin pie",
+      "price": 500,
+      "altString": "pumpkin Pie",
+      "img": "./src/assets/pumpkin_pie.png",
+      "title": "A slice of pumpkin pie"
+    }
+  ],
+  "orderList": [
+    {
+      "customer": "First customer",
+      "items": { "apple_pie": 1, "banana_cream_pie": 3, "pumpkin_pie": 1 },
+      "cost": 2000,
+      "type": 0 // 0 - customer, 1 - delivery
+    },
+    {
+      "customer": "Second customer",
+      "items": { "apple_pie": 2, "banana_cream_pie": 3, "pumpkin_pie": 1 },
+      "cost": 2500,
+      "type": 0
+    }
+  ]
+}
+```
+
+#### On close
+
+```
+{
+  openMenu: false
+}
+```
+
+### Debugging
+
+After running `npm start`, open your web console and run your configured menu data within a `postMessage({data: ...})` call.
+Copy the command below and adjust what you need.
+
+Ex:
+
+```
+postMessage({data: {
+  openMenu: true,
+  initialRoute: 'menu',
+  customerName: "derek",
+  shopData: {
+    name: "Tony's Pizza",
+    id: "tonys-pizza",
+    logo: "./src/assets/theTacoFarmer.png",
+    logoAlt: "taco",
+    primaryColor: "red",
+    secondaryColor: "yellow",
+  },
+  menuItems: [
+    {
+      name: "Pepperoni Pizza",
+      shortName: "Pepperoni",
+      key: "pepperoni_pizza",
+      description: "Pepperoni pizza",
+      price: 500,
+      altString: "Pepperoni pizza",
+      img: "./src/assets/beer.png",
+      title: "A slice of pepperoni pizza",
+    },
+    {
+      name: "Pepperoni Pizza",
+      shortName: "Cheese",
+      key: "cheese_pizza",
+      description: "Pepperoni pizza",
+      price: 500,
+      altString: "Pepperoni pizza",
+      img: "./src/assets/beer.png",
+      title: "A slice of pepperoni pizza",
+    },
+    {
+      name: "Pepperoni Pizza",
+      key: "sausage_pizza",
+      shortName: "Sausage",
+      description: "Pepperoni pizza",
+      price: 500,
+      altString: "Pepperoni pizza",
+      img: "./src/assets/beer.png",
+      title: "A slice of pepperoni pizza",
+    },
+  ],
+  orderList: [
+    {
+      customer: "Derek Fhreebs",
+      items: { pepperoni_pizza: 3, cheese_pizza: 10, sausage_pizza: 30 },
+      cost: 500,
+      type: 0,
+    },
+    {
+      customer: "Michelle Matzen",
+      items: { pepperoni_pizza: 3 },
+      cost: 100,
+      type: 0,
+    },
+  ],
+}});
+```
+
+# Create React App Docs
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

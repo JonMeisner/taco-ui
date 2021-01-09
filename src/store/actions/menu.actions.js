@@ -59,19 +59,3 @@ export const clearMenu = () => ({
   // Clear all Menu/Order Data (On Shut Down)
   type: CLEAR_ALL,
 });
-
-// export const showMenuToggler = () => ({
-//     type:SHOW_MENU,
-// })
-// export const setCustomerName = (name) => ({
-//     type:SET_CUSTOMER_NAME,
-//     payload: name,
-// })
-// export const setMenuData = (toggle, name) => ({
-//   // Show UI & assign customer name
-//   type: INITIALIZE_MENU,
-//   payload: { toggle, name },
-// });
-// // dispatch(
-//   actions.setMenuData(event.data.openMenu, event.data.customerName)
-// );

@@ -60,7 +60,6 @@ const QuantityDetails = ({ orderItems, menuItems }) => {
       }}
     >
       {menuItems.map((mItem) => {
-        console.log(mItem.key, orderItems[mItem.key], orderItems);
         return (
           <Typography className={classes.labels} variant="h6">
             {mItem.shortName}: {orderItems[mItem.key] || 0}
