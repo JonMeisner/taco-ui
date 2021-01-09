@@ -8,7 +8,7 @@ import {
   makeStyles,
   Button,
 } from "@material-ui/core";
-import MenuItem from "./menu-item";
+import MenuItem from "./MenuItem";
 import { useSelector } from "react-redux";
 
 const useStyles = makeStyles({
@@ -52,15 +52,9 @@ const Menu = ({ handleMinus, handlePlus, submitOrder }) => {
     showMenuToggler,
   } = useSelector((state) => state.getMenuData);
 
-  console.log(menuItems);
-
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
-
-  // if (!showMenuToggler) {
-  //   return <></>;
-  // }
 
   return (
     <div>
@@ -90,7 +84,13 @@ const Menu = ({ handleMinus, handlePlus, submitOrder }) => {
           <Button
             className={classes.orderButton}
             variant="outlined"
-            onClick={() => submitOrder({activeOrder: activeOrder, customerName: customerName, totalCost: totalCost})}
+            onClick={() =>
+              submitOrder({
+                activeOrder: activeOrder,
+                customerName: customerName,
+                totalCost: totalCost,
+              })
+            }
           >
             ORDER
           </Button>

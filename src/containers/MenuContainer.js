@@ -13,7 +13,7 @@ import * as actions from "../store/actions/menu.actions";
 import * as selectors from "../store/selectors/menu.selectors";
 import * as apis from "../apis/apis";
 
-const MenuContainer = ({ closeApplication }) => {
+const MenuContainer = () => {
   const dispatch = useDispatch();
   const { activeOrder } = useSelector((state) => state.getMenuData);
 

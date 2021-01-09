@@ -7,8 +7,7 @@ import * as apis from "../apis/apis";
 import { connect, useSelector } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import * as cookSelectors from "../store/selectors/order.selectors";
-import OrderViews from "../components/order-views";
-import Header from "../components/header";
+import OrderViews from "../components/OrderView";
 
 const title = "Current Orders";
 const buttonPressText = "Cook";
@@ -31,16 +30,14 @@ const OrderContainer = ({ closeApplication }) => {
   };
 
   return (
-    <>
-      <OrderViews
-        title={title}
-        buttonPressText={buttonPressText}
-        orderList={orderData.orderList}
-        menuItems={menuItems}
-        cookOrder={cookOrder}
-        deleteOrder={deleteOrder}
-      />
-    </>
+    <OrderViews
+      title={title}
+      buttonPressText={buttonPressText}
+      orderList={orderData.orderList}
+      menuItems={menuItems}
+      cookOrder={cookOrder}
+      deleteOrder={deleteOrder}
+    />
   );
 };
 

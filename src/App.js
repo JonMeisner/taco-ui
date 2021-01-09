@@ -2,12 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import * as apis from "./apis/apis";
-import {
-  HashRouter as Router,
-  Switch,
-  Route,
-  useHistory,
-} from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core";
 
@@ -18,8 +13,8 @@ import * as actions from "./store/actions/menu.actions";
 import * as cookActions from "./store/actions/order.actions";
 import Header from "./components/header";
 
-import MenuContainer from "./containers/menu-container";
-import OrderContainer from "./containers/order-container";
+import MenuContainer from "./containers/MenuContainer";
+import OrderContainer from "./containers/OrderContainer";
 
 const useStyles = makeStyles((theme) => ({
   show: {
