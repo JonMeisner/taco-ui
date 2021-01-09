@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import * as apis from "./apis/apis";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route, useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core";
 
@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 const mapStateToProps = createStructuredSelector({});
 
 const App = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
   const showMenu = useSelector((state) => state.getMenuData);
@@ -52,12 +53,15 @@ const App = () => {
   // todo: define order pass
   const submitOrder = (orderPass) => {
     apis.submitOrder(orderPass);
+    dispatch(actions.clearMenu());
+    console.log(orderPass);
   };
 
   const closeApplication = () => {
     apis.closeMenu();
     dispatch(actions.clearMenu());
     dispatch(cookActions.ClearOrderData());
+    history.push("/");
   };
 
   useEffect(() => {
@@ -98,8 +102,8 @@ const App = () => {
       showMenu.customerName === ""
     ) {
       console.log("hit", event.data);
-      dispatch(actions.initializeMenu(event.data));
-      dispatch(cookActions.setOrderList(event.data.orderList));
+      dispatch(actions.initializeMenu(event.data.data));
+      dispatch(cookActions.setOrderList(event.data.data.orderList));
 
       // dispatch(actions.showMenuToggler())
       // dispatch(actions.setCustomerName(event.data.customer))
@@ -113,7 +117,7 @@ const App = () => {
     <div className={showMenu.showMenuToggler ? classes.show : classes.hide}>
       <Router>
         <Switch>
-          <Route exact path="/menu">
+          <Route exact path="/">
             <MenuContainer
               submitOrder={submitOrder}
               closeApplication={closeApplication}

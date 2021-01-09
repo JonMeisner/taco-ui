@@ -90,7 +90,7 @@ const Menu = ({ handleMinus, handlePlus, submitOrder }) => {
           <Button
             className={classes.orderButton}
             variant="outlined"
-            onClick={() => submitOrder([])}
+            onClick={() => submitOrder({activeOrder: activeOrder, customerName: customerName, totalCost: totalCost})}
           >
             ORDER
           </Button>

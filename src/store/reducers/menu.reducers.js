@@ -5,6 +5,8 @@ import * as types from "../actions/menu.actions";
 const initialState = {
   showMenuToggler: false,
   customerName: "",
+  job: "",
+  workerJob: "",
   totalCost: 0,
   activeOrder: {},
   shopData: {},
@@ -26,7 +28,7 @@ const menuReducer = (state = initialState, action) => {
         ...state,
         activeOrder: {
           ...state.activeOrder,
-          [action.payload.key]: newQuantity >= 0 ? newQuantity : 0,
+          [action.payload.key]: newQuantity >= 0 && newQuantity <= 5 ? newQuantity : [action.paylod.key],
         },
         totalCost:
           newQuantity >= 0
@@ -38,19 +40,14 @@ const menuReducer = (state = initialState, action) => {
         ...state,
         showMenuToggler: action.payload.toggle,
         customerName: action.payload.name,
+        job: action.payload.job,
+        workerJob: action.payload.workerJob,
         shopData: action.payload.shopData,
         menuItems: action.payload.menuItems,
         activeOrder: action.payload.emptyOrder,
       };
     case types.CLEAR_ALL:
-      return {
-        ...state,
-        customerName: "",
-        totalCost: 0,
-        activeOrder: {},
-        menuItems: [],
-        showMenuToggler: false,
-      };
+      return initialState
     // case types.SHOW_MENU:
     //     return {
     //         ...state,

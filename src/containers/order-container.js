@@ -18,8 +18,9 @@ const OrderContainer = ({ closeApplication }) => {
   const { menuItems } = useSelector((state) => state.getMenuData);
 
   const cookOrder = (orderFinal) => {
-    if (orderFinal.type === "shop") {
+    if (orderFinal.type === 0) {
       apis.cookOrder([orderFinal]);
+      closeApplication();
     } else {
       apis.cookDeliveryOrder([orderFinal]);
     }
@@ -27,7 +28,7 @@ const OrderContainer = ({ closeApplication }) => {
 
   const deleteOrder = (deletedOrder) => {
     apis.deleteOrder([deletedOrder]);
-    closeApplication();
+    // closeApplication();
   };
 
   return (

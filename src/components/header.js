@@ -19,9 +19,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = ({ closeApplication }) => {
+const Header = ({ closeApplication, job }) => {
   const classes = useStyles();
-  const { shopData } = useSelector((state) => state.getMenuData);
+  const { shopData, workerJob } = useSelector((state) => state.getMenuData);
+  console.log(shopData.job);
+  console.log(workerJob);
 
   return (
     <AppBar position="sticky" color="default">
@@ -30,17 +32,17 @@ const Header = ({ closeApplication }) => {
           src={shopData.logo}
           alt={shopData.logoAlt}
           height="50"
-          width="200"
+          width="50"
         />
         <ButtonGroup className={classes.buttonGroup}>
-          <Button component={Link} to={"/menu"} variant="outlined">
+          <Button component={Link} to={"/"} variant="outlined">
             Menu
           </Button>
-          <Button component={Link} to={"/orders"} variant="outlined">
+          <Button component={Link} to={"/orders"} variant="outlined"  disabled={workerJob === shopData.job ? false : true}>
             Orders
           </Button>
         </ButtonGroup>
-        <IconButton style={{ marginLeft: "10px" }} onClick={closeApplication}>
+        <IconButton style={{ marginLeft: "10px" }} onClick={closeApplication} component={Link} to={"/"}>
           <ExitToApp />
         </IconButton>
       </Toolbar>

@@ -14,6 +14,8 @@ export const hideMenuToggler = () => ({
 
 export const initializeMenu = ({
   openMenu,
+  job,
+  workerJob,
   customerName,
   shopData,
   menuItems,
@@ -26,6 +28,8 @@ export const initializeMenu = ({
     payload: {
       toggle: openMenu,
       name: customerName,
+      job: job,
+      workerJob: workerJob,
       shopData,
       emptyOrder,
       menuItems,

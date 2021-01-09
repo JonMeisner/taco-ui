@@ -30,11 +30,11 @@ import axios from "axios";
 //   return axios.post(deleteOrderUrl, { deletedOrder });
 // };
 
-const closeMenuUrl = "http://pma-restaurants/closeMenu"; // previously closeTacos
-const submitOrderUrl = "http://pma-restaurants/submitOrder"; // previously orderTacos
-const deleteOrderUrl = "http://pma-restaurants/deleteOrder"; // no change
-const cookOrderUrl = "http://pma-restaurants/cookOrder"; // previously cookTacos
-const cookDeliveryOrderUrl = "http://pma-restaurants/cookDeliveryOrder"; // previously cookDelivery
+const closeMenuUrl = "http://pma-pizza/closeMenu"; // previously closeTacos
+const submitOrderUrl = "http://pma-pizza/submitOrder"; // previously orderTacos
+const deleteOrderUrl = "http://pma-pizza/deleteOrder"; // no change
+const cookOrderUrl = "http://pma-pizza/cookOrder"; // previously cookTacos
+const cookDeliveryOrderUrl = "http://pma-pizza/cookDeliveryOrder"; // previously cookDelivery
 
 export const closeMenu = () => {
   return axios.post(closeMenuUrl, {});
@@ -45,7 +45,7 @@ export const submitOrder = (orderPass) => {
 };
 
 export const cookOrder = (cookOrder) => {
-  return axios.post(cookOrderUrl, { cookOrder });
+  return axios.post(cookOrderUrl, cookOrder);
 };
 
 export const cookDeliveryOrder = (deliveryOrder) => {

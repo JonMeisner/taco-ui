@@ -60,6 +60,7 @@ const QuantityDetails = ({ orderItems, menuItems }) => {
       }}
     >
       {menuItems.map((mItem) => {
+        console.log(mItem.key, orderItems[mItem.key], orderItems);
         return (
           <Typography className={classes.labels} variant="h6">
             {mItem.shortName}: {orderItems[mItem.key] || 0}
@@ -70,7 +71,7 @@ const QuantityDetails = ({ orderItems, menuItems }) => {
   );
 };
 
-const OrderViews = ({ orderList, menuItems, deleteOrder }) => {
+const OrderViews = ({ orderList, menuItems, deleteOrder, cookOrder }) => {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
@@ -83,8 +84,8 @@ const OrderViews = ({ orderList, menuItems, deleteOrder }) => {
 
   const handleClose = (ready) => {
     if (ready === true) {
-      deleteOrder(currentOrder);
       setOpen(false);
+      deleteOrder(currentOrder);
     } else {
       setOpen(false);
     }
