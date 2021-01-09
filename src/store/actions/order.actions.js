@@ -18,6 +18,6 @@ export const setOrderList = (value) => ({
   payload: value,
 });
 
-export const ClearOrderData = () => ({
+export const clearOrderData = () => ({
   type: CLEAR_ORDER_DATA,
 });
