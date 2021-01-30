@@ -55,7 +55,7 @@ const App = () => {
     shopData: { secondaryColor },
   } = useSelector((state) => state.getMenuData);
 
-  useKeyListeners();
+ 
 
   const closeApplication = () => {
     apis.closeMenu();
@@ -63,6 +63,8 @@ const App = () => {
     dispatch(menuActions.clearMenu());
     dispatch(orderActions.clearOrderData());
   };
+
+  useKeyListeners(closeApplication);
 
   useEffect(() => {
     window.addEventListener("message", (e) => onMessage(e));
@@ -72,7 +74,7 @@ const App = () => {
   }, []);
 
   const onMessage = (event) => {
-    if (event.data.data.openMenu === true) {
+    if (event.data.openMenu === true) {
       // Initial route state variable is consumed by the header component and immediately routes to value given
       setInitialRoute(event.data.data.initialRoute);
       dispatch(menuActions.initializeMenu(event.data.data));

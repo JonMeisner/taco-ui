@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-export const useKeyListeners = () => {
+export const useKeyListeners = (closeApplication) => {
   useEffect(() => {
     document.addEventListener("keydown", (e) => onKeyPress(e));
     return (e) => {
